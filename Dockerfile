@@ -8,6 +8,14 @@ RUN apt-get update -qq && apt-get install -y -qq git wget && \
     pip install -q gdown && \
     rm -rf /var/lib/apt/lists/*
 
+# --- Constraint global ANTES de instalar cualquier custom node ---
+# Así, el pip install -r requirements.txt de ComfyUI-LTXVideo (y de
+# cualquier otro nodo) respeta este límite desde su primera instalación,
+# en vez de instalar una versión rota y luego corregirla.
+RUN echo "kornia==0.6.12" > /etc/pip-constraints.txt
+ENV PIP_CONSTRAINT=/etc/pip-constraints.txt
+
+
 # Custom Nodes en /ComfyUI (se copian al workspace en el primer arranque)
 RUN cd /ComfyUI/custom_nodes && \
     rm -rf rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper ComfyUI-Login ComfyUI-login Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler && \ 

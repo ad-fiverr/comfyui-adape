@@ -92,6 +92,26 @@ download_hf_repo() {
     HF_TOKEN=${HF_TOKEN} huggingface-cli download "$repo" --local-dir "$dest_dir" --local-dir-use-symlinks False
 }
 
+download_hf_repo_aria2c() {
+    local repo="$1" dest_dir="$2" auth="$3"
+
+    echo "  Listando archivos de: $repo"
+    local files
+    files=$(curl -s -H "Authorization: Bearer $auth" \
+        "https://huggingface.co/api/models/$repo" | jq -r '.siblings[].rfilename')
+
+    if [ -z "$files" ]; then
+        echo "  No se encontraron archivos (revisa el nombre del repo o el token)"
+        return 1
+    fi
+
+    while IFS= read -r file; do
+        local url="https://huggingface.co/$repo/resolve/main/$file"
+        local dest="$dest_dir/$file"
+        download_if_missing "$url" "$dest" "$auth"
+    done <<< "$files"
+}
+
 echo "Instalando huggingface_hub..."
 pip install -U huggingface_hub
 
@@ -155,6 +175,10 @@ download_if_missing "https://civitai.red/api/download/models/1973462?type=Model&
 download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "DaSiWa_Wan22_High_Deepthroat_v11.safetensors" 
 
+cd ${COMFYUI_DIR}/models/loras 
+download_hf_repo_aria2c "exjadev/KLEIN-ad_ape_v01" "./character/KLEIN-ad_ape_v01" "$HF_TOKEN"
+download_hf_repo_aria2c "exjadev/ZIMAGE-ad_ape-v01" "./character/ZIMAGE-ad_ape-v01" "$HF_TOKEN"
+download_hf_repo_aria2c "exjadev/KREA-ad_ape_v01" "./character/KREA-ad_ape_v01" "$HF_TOKEN"
 
 echo "[ VAE ]"
 cd ${COMFYUI_DIR}/models/vae && rm -rf split_files/
