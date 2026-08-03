@@ -185,6 +185,9 @@ cd ${COMFYUI_DIR}/models/vae && rm -rf split_files/
 download_if_missing "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_fp32.safetensors" \
     "Wan2_1_VAE_fp32.safetensors" "$HF_TOKEN"
 
+download_if_missing "https://civitai.red/api/download/models/2617751?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "Klein-Realistic_Nudes.safetensors"
+
 
 
 # ── SECCIÓN DE DESCARGAS MODELOS DE IMAGEN ─────────────────────────
@@ -226,27 +229,7 @@ download_if_missing "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/spl
 
 # ------------------------------ LORAS ---
 echo "[ LoRAs ]"
-cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
-echo "Cleaning folder files..."
-cd ${COMFYUI_DIR}/models/loras/
-
-echo "START DOWNLOAD LORAS..."
-
-# ── Z IMAGE DE4RMOLLY LORA FILE ──
-download_if_missing "https://huggingface.co/exjadev/de4rmolly-zimage-v001/resolve/main/de4rmolly_v01/de4rmolly_v01_000001500.safetensors"  \
-    "de4rmolly_v01/de4rmolly_v01_000001500.safetensors" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/exjadev/de4rmolly-zimage-v001/resolve/main/de4rmolly_v01/de4rmolly_v01_000002550.safetensors"  \
-    "de4rmolly_v01/de4rmolly_v01_000002550.safetensors" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/exjadev/de4rmolly-zimage-v001/resolve/main/de4rmolly_v01/de4rmolly_v01_000002250.safetensors" \
-    "de4rmolly_v01/de4rmolly_v01_000002250.safetensors" "$HF_TOKEN"
-
-# ── Krea 2 DE4RMOLLY LORA FILE ──
-download_if_missing "https://huggingface.co/exjadev/de4rmolly-krea-v001/resolve/main/de4rmolly_krea_v002/de4rmolly_krea_v002_000001500.safetensors" \
-    "de4rmolly_krea_v002_000001500.safetensors" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/exjadev/de4rmolly-krea-v001/resolve/main/de4rmolly_krea_v002/de4rmolly_krea_v002_000002100.safetensors" \
-    "de4rmolly_krea_v002/de4rmolly_krea_v002_000002100.safetensors" "$HF_TOKEN"
-
-
+cd ${COMFYUI_DIR}/models/loras && rm -rf recipes/
 # Civitai filters & loras
 download_if_missing "https://civitai.red/api/download/models/3067151?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "krea2filterbypass3.safetensors"
