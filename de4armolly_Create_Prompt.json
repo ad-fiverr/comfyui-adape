@@ -1,0 +1,476 @@
+{
+  "id": "13ea6a2a-9618-4cd5-8a85-1b26234ea75d",
+  "revision": 0,
+  "last_node_id": 18,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 14,
+      "type": "ShowText|pysssss",
+      "pos": [
+        193.20825811717722,
+        802.8411733745794
+      ],
+      "size": [
+        374.4536999999998,
+        407.4693000000001
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "I have this json prompt, I DON'T WANT AN IMAGE, I WANT THE CORRECTED PROMPT\n\n```json\n{\n  \"subject\": {\n    \"description\": \"(((de4rmolly))), woman, in a car, kneeling on the leather back seat, turned to look back over her right shoulder at the camera, right arm holding a phone for a selfie, left hand placed on the seat behind her, head tilted slightly.\",\n    \"expression\": {\n      \"eyes\": {\n        \"direction\": \"looking directly at camera\",\n        \"angle\": \"looking slightly up at camera\",\n        \"effect\": \"confident and alluring gaze\",\n        \"energy\": \"intense, seductive\",\n        \"lashes\": \"long, dark, voluminous eyelashes\"\n      },\n      \"mouth\": \"pout, slightly parted with dark lipstick\",\n      \"brows\": \"slightly arched, strong definition\",\n      \"chin\": \"slightly lifted and angled\",\n      \"overall\": \"seductive and powerful expression with a direct gaze\"\n    },\n    \"hair\": {\n      \"style\": \"long, loose, wavy hair with bangs\",\n      \"details\": \"some reddish streaks framing the face and through the lengths, voluminous at the crown, falling over shoulders\",\n      \"texture\": \"appears dry and styled, with a slight messy quality\"\n    },\n    \"pose\": {\n      \"overall\": \"kneeling pose on all fours on a car seat, torso strongly twisted towards the camera, head turned back\",\n      \"lower_body\": {\n        \"hip_angle\": \"hips rotated to the left and angled towards the camera\",\n        \"hip_position\": \"weight primarily on knees on the seat\",\n        \"stance\": \"kneeling, legs bent at the knee, feet pointing towards the back of the car\",\n        \"ass_presentation\": \"prominently presented and angled towards the camera due to torso twist and kneeling position\"\n      },\n      \"upper_body\": {\n        \"torso\": \"strong twist, upper torso rotated significantly to the right to face the camera, while lower body is angled differently\",\n        \"chest\": \"angled towards the camera, leaning forward, with visible projection\",\n        \"back\": \"slightly arched, enhancing the curve of the spine\"\n      },\n      \"arms\": {\n        \"phone_arm\": {\n          \"position\": \"right arm bent, holding a phone up near her face for a back-camera selfie\",\n          \"angle\": \"elbow bent sharply, wrist angled to hold the phone\",\n          \"effect\": \"creates a diagonal line across the upper body towards the phone\"\n        },\n        \"other_arm\": {\n          \"position\": \"left arm extended backward, supporting weight\",\n          \"placement\": \"left hand flat on the car seat behind her\",\n          \"energy\": \"supporting, stretched, balancing the twist\",\n          \"effect\": \"anchors the pose and adds to the dynamic balance\"\n        }\n      },\n      \"head\": {\n        \"turn\": \"turned sharply to her right, looking directly over her shoulder at the camera\",\n        \"tilt\": \"slightly tilted down and to her right\",\n        \"chin\": \"slightly lifted due to the head tilt and turn\"\n      }\n    },\n    \"clothing\": {\n      \"top\": {\n        \"type\": \"strapless mini dress\",\n        \"color\": \"black\",\n        \"graphic\": \"embossed texture resembling alligator or crocodile skin pattern\",\n        \"fit\": {\n          \"description\": \"very tight, body-con fit\",\n          \"chest_situation\": \"fabric straining across the chest, molded to curves, creating a defined, uplifted shape\",\n          \"shape\": \"hourglass silhouette, emphasizing curves\",\n          \"effect\": \"accentuates form, creates a sleek and bold aesthetic\",\n          \"support\": \"strong visual support due to tightness, enhancing natural form\",\n          \"projection\": \"high, defined projection of the chest area\"\n        },\n        \"length\": \"mini-dress length, hemline high on the thigh\",\n        \"neckline\": \"strapless, bandeau style, straight across\",\n        \"sleeves\": \"sleeveless\",\n        \"fabric\": \"faux leather, embossed, with a noticeable sheen\"\n      },\n      \"bottom\": {\n        \"type\": \"mini dress\",\n        \"color\": \"black\",\n        \"length\": \"hemline high on the thigh, creating a 'shorts' effect\",\n        \"fit_detail\": {\n          \"waist\": \"integrated into the tight dress, suggesting a cinched, form-fitting waistline\",\n          \"ass_fit\": \"fabric stretched tightly over the glutes, highlighting their shape and contour\",\n          \"ass_situation\": \"material pulled taut, showing full contour with visible textural patterns reflecting light\",\n          \"shape_visibility\": \"very high, anatomy clearly defined through the taut fabric\",\n          \"cheeks\": \"fully covered but strongly outlined\",\n          \"pockets\": \"none\"\n        },\n        \"color_effect\": \"deep, rich black with a reflective sheen\",\n        \"effect\": \"seductive, accentuates the lower body and gluteal curve\"\n      }\n    },\n    \"the_ass_focus\": {\n      \"size\": \"visually prominent, occupies a significant portion of the frame\",\n      \"position\": \"angled towards the camera, elevated due to the kneeling pose\",\n      \"shorts_effect\": \"the mini-dress frames and emphasizes the gluteal curve distinctly\",\n      \"shape\": \"rounded, firm, and well-defined\",\n      \"the_energy\": \"bold and confident presentation\"\n    },\n    \"the_chest_focus\": {\n      \"effect\": \"appears naturally lifted and well-supported by the tight garment\",\n      \"shape\": \"full and rounded geometry\",\n      \"fabric_behavior\": \"stretched and molded, creating tension lines that emphasize form\",\n      \"from_side\": \"clear, defined profile visible from the camera's angle\",\n      \"green_effect\": \"black fabric creates a strong contrast with skin, enhancing the form\"\n    },\n    \"skin_showing\": {\n      \"midriff\": \"covered\",\n      \"legs\": \"upper thighs are visible\",\n      \"amount\": \"significant amount of skin visible on legs, arms, and décolletage/shoulders\"\n    },\n    \"face\": {\n      \"makeup\": \"heavy, dramatic eye makeup (winged eyeliner, dark shadow) with dark, almost black lipstick\",\n      \"details\": \"visible contouring, strong brow definition\",\n      \"the_angle\": \"head tilted down and turned, creating a mysterious and powerful perception\"\n    }\n  },\n  \"accessories\": {\n    \"earrings\": {\n      \"type\": \"large, thin hoop earrings\",\n      \"effect\": \"adds a touch of glamour, frames the face\"\n    },\n    \"necklaces\": {\n      \"setup\": \"single band\",\n      \"position\": \"choker-style, high on the neck\"\n    },\n    \"device\": {\n      \"type\": \"iPhone 17 Pro Max\",\n      \"position\": \"held in right hand, extended to take a selfie\",\n      \"angle\": \"slight tilt, back camera facing the subject\"\n    }\n  },\n  \"room_environment\": {\n    \"setting\": \"interior of a luxury car, specifically the back seat area\",\n    \"lighting\": \"low, atmospheric, ambient city lights visible outside windows, with some warm interior spotlight from the car ceiling creating uneven illumination – one side highlighted, the other in shadow\",\n    \"background\": {\n      \"decor\": \"car interior details including headrests, seatbelts, air vents, central console, and the texture of the leather seats\",\n      \"vibe\": \"urban night out, intimate, slightly mysterious with a luxurious undertone\"\n    }\n  },\n  \"photography\": {\n    \"camera_position\": \"low angle, positioned behind and slightly to the left of the subject, looking up\",\n    \"angle_effect\": \"emphasizes the subject's pose and form, creating a powerful, somewhat voyeuristic perspective\",\n    \"framing\": \"medium close-up, focusing on the subject and immediate car interior\",\n    \"quality\": \"sharp and highly detailed, with slight blur and noise to emphasize the amateur and realistic selfie setting\",\n    \"aspect\": \"approximately 3:4 portrait\"\n  },\n  \"color_story\": {\n    \"top\": \"deep black\",\n    \"shorts\": \"deep black (as part of dress)\",\n    \"accessories\": \"silver/dark metal on earrings, black choker\",\n    \"overall\": \"dominant deep blacks and browns from the car interior, contrasted with warm yellow/orange interior lights and cool blue/pink urban lights in the background\"\n  },\n  \"the_vibe\": {\n    \"energy\": \"seductive, confident, slightly rebellious, intimate\",\n    \"pose_story\": \"a spontaneous, provocative moment captured in a luxurious, urban night setting, framed as a selfie\",\n    \"face_vs_body\": \"face maintains a direct, intense gaze while the body is in a dynamically twisted, provocative pose\",\n    \"the_hand\": \"left hand acts as a stable anchor for the pose, while the right hand actively takes the selfie\",\n    \"the_angle\": \"low, intimate camera angle emphasizes the subject's form and adds to the provocative nature\",\n    \"caption_energy\": \"confident, slightly defiant, raw, 'caught in the act'\"\n  },\n  \"critical_elements\": {\n    \"phone_height\": \"held at eye/face level, angled for a back-camera selfie\",\n    \"eye_direction\": \"gaze directly at the camera\",\n    \"hand_placement\": \"left hand flat on the seat supporting weight, right hand holding the phone near her face\",\n    \"ass_angle\": \"significant rotation and elevation, approximately 45-60 degrees towards camera\",\n    \"chest\": \"prominent and well-defined by the tight dress\",\n    \"color_combo\": \"black dress against brown leather, illuminated by varied urban lights, creating rich contrasts\",\n    \"contrast\": \"thematic juxtaposition of intimacy/provocation within a luxury car setting, and light/shadow play\"\n  },\n  \"controlnet_strategy\": {\n    \"recommended_units\": [\n      \"OpenPose\",\n      \"Depth\",\n      \"Canny\"\n    ],\n    \"openpose_focus\": \"replicate the kneeling pose accurately, ensure torso twist, precise arm positions (left supporting, right holding phone), head turn, and leg/foot angles are detected.\",\n    \"depth_focus\": \"maintain the perspective and spatial arrangement within the car interior, accurately representing distances between body parts and interior elements. Crucial for phone-to-face distance and car seat depth.\",\n    \"canny_threshold\": \"low for general car outlines and hair flow, high for dress texture details, shoe straps, and facial feature definitions.\",\n    \"pose_complexity\": 8\n  }\n}\n```\n\nPlease help me capture the essential part of the prompt to generate an image.\n\nA hyperrealistic, ultra-detailed full-shot photograph taken with an iPhone 17 Pro Max back camera, uploaded image is looking directly at the camera with a confident expression, her head tilted slightly. creating an interesting visual mosaic. The lighting is low and atmospheric, casting soft shadows, contributing to the intimate and luxurious feel of the scene. The overall quality is sharp and highly detailed, emphasizing the fashion and the unique setting. Use photo reference for facial features. \n\n"
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 8,
+      "type": "PreviewAny",
+      "pos": [
+        805.7051561983468,
+        316.0723677685953
+      ],
+      "size": [
+        422.96000000000004,
+        394.69000000000005
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "title": "JSON PROMPT",
+      "properties": {
+        "Node name for S&R": "PreviewAny",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        null,
+        null,
+        null
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 15,
+      "type": "PreviewAny",
+      "pos": [
+        799.4730767818652,
+        809.2734570119663
+      ],
+      "size": [
+        422.96000000000004,
+        394.69000000000005
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "title": "Z IMAGE / KREA / KLEIN PROMPT",
+      "properties": {
+        "Node name for S&R": "PreviewAny",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        null,
+        null,
+        null
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 12,
+      "type": "StringReplace",
+      "pos": [
+        197.74655893196777,
+        806.379867232239
+      ],
+      "size": [
+        487.7823229287617,
+        545.5824219657125
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "replace",
+          "type": "STRING",
+          "widget": {
+            "name": "replace"
+          },
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringReplace",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "I have this json prompt, I DON'T WANT AN IMAGE, I WANT THE CORRECTED PROMPT\n\n[JSON]\n\nPlease help me capture the essential part of the prompt to generate an image.\n\nA hyperrealistic, ultra-detailed full-shot photograph taken with an iPhone 17 Pro Max back camera, uploaded image is looking directly at the camera with a confident expression, her head tilted slightly. creating an interesting visual mosaic. The lighting is low and atmospheric, casting soft shadows, contributing to the intimate and luxurious feel of the scene. The overall quality is sharp and highly detailed, emphasizing the fashion and the unique setting. Use photo reference for facial features. \n\n",
+        "[JSON]",
+        ""
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 1,
+      "type": "Ask_Gemini",
+      "pos": [
+        529.6149165289256,
+        305.2771214876032
+      ],
+      "size": [
+        269.1541548295455,
+        395.28460000000007
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 15
+        },
+        {
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Ask_Gemini",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "\nput the face in this reference image (we need to mantpose and costume)\nA realistic iPhone 17 Pro Max back-camera selfie of the person from the reference imagen, The selfie is taken at a terrible angle with no effort. The lighting is uneven—one side blown out by light, the other in shadow.   her head tilted slightly. creating an interesting visual mosaic. The lighting is low and atmospheric, casting soft shadows, contributing to the intimate and luxurious feel of the scene. The background is plain and forgettable, like a wall and a wooden bed header. The image has slight blur and noise, overall quality is sharp and highly detailed, emphasizing the amateur and the realistic setting. Use photo reference for facial features.",
+        "BLOCK_NONE",
+        "text",
+        "gemini-2.5-flash",
+        "",
+        "",
+        "ROL Eres un Arquitecto de Prompts SDXL y Especialista en ControlNet. Tu trabajo es analizar imágenes de entrada para generar un JSON de configuración técnica. Tu prioridad es la fidelidad de la pose y la física de la ropa, dejando que el LoRA se encargue de la identidad biológica.  FLUJO DE TRABAJO INPUT A (Main Character/Pose): Analiza la postura, iluminación y entorno.  INPUT B (Outfit - Opcional): Analiza la tela, corte y textura.  OUTPUT: Genera un JSON fusionando la ropa del Input B en la pose del Input A.  REGLAS ABSOLUTAS (VIOLARLAS ES FALLAR) 1. PROTOCOLO DE PROTECCIÓN DE LORA (Identity Firewall) TRIGGER OBLIGATORIO: El campo description SIEMPRE debe comenzar con: (((de4rmolly))), woman,  PROHIBIDO DESCRIBIR BIOLOGÍA: El LoRA ya contiene la información genética.  ❌ NO USAR: \"blue eyes\", \"green eyes\", \"blonde hair\", \"brown hair\", \"pale skin\", \"tan skin\", \"small nose\", \"curvy body\", \"slim body\", \"tall\".  ✅ USAR (Solo Estilismo/Acción): \"looking at camera\", \"braided hair\", \"wet skin\", \"red lipstick\", \"sweaty skin\", \"messy bun\".  ANATOMÍA: Describe la pose y los volúmenes, no la genética.  2. PROTOCOLO \"SILENT KEY\" (Limpieza de Datos) Si un campo del JSON no se detecta claramente en la imagen o no aplica: ELIMINA LA LLAVE.  ❌ NUNCA ESCRIBAS: \"N/A\", \"null\", \"None\", \"Unknown\".  Si glasses no existen, borra la llave glasses del objeto. El JSON debe quedar limpio.  3. FÍSICA DE LA ROPA (Sastrería Virtual) Si hay INPUT B, viste al sujeto con esa ropa.  Describe la tensión mecánica: fabric straining across chest, waistband digging into skin, gaping at the back, molded to curves.  4. LÓGICA CONTROLNET (Nuevo Requerimiento) Al final del JSON, he añadido un bloque controlnet_strategy. Debes analizar el INPUT A y definir qué preprocesadores son necesarios para replicar la pose exactamente (OpenPose para el esqueleto, Depth para la profundidad/escorzo, Canny si hay detalles finos de manos/dedos).  ESTRUCTURA DE SALIDA (JSON) Genera únicamente este código JSON. Recuerda: Si no aplica, borra la línea.  JSON  {   \"subject\": {     \"description\": \"(((midwest_girl_lora))), woman, [ACTION AND SCENE SUMMARY]...\",     \"mirror_rules\": \"Describe reflection logic ONLY if mirror is present\",     \"expression\": {       \"eyes\": {         \"direction\": \"Gaze direction (e.g., looking up at camera)\",         \"angle\": \"Camera angle relative to eyes\",         \"effect\": \"Visual impact (e.g., siren gaze, innocent)\",         \"energy\": \"Emotional subtext\",         \"lashes\": \"Makeup details only\"       },       \"mouth\": \"State (parted, smiling, pout)\",       \"brows\": \"Expression (arched, relaxed)\",       \"chin\": \"Position (tucked, lifted)\",       \"overall\": \"Synthesis of expression\"     },     \"hair\": {       \"style\": \"Hairstyle name (braid, loose, ponytail)\",       \"details\": \"Styling specifics (messy, windblown)\",       \"texture\": \"Condition (wet, silky, dry)\"     },     \"pose\": {       \"overall\": \"General stance name\",       \"lower_body\": {         \"hip_angle\": \"Rotation relative to camera\",         \"hip_position\": \"Weight distribution\",         \"stance\": \"Leg position\",         \"ass_presentation\": \"How the back is presented to camera\"       },       \"upper_body\": {         \"torso\": \"Twist or lean description\",         \"chest\": \"Angle and visibility\",         \"back\": \"Arch or posture\"       },       \"arms\": {         \"phone_arm\": {           \"position\": \"Placement\",           \"angle\": \"Elbow angle\",           \"effect\": \"Visual line\"         },         \"other_arm\": {           \"position\": \"Location\",           \"placement\": \"Specific touch point\",           \"energy\": \"Tension vs relax\",           \"effect\": \"Visual guidance\"         }       },       \"head\": {         \"turn\": \"Rotation\",         \"tilt\": \"Angle\",         \"chin\": \"Vertical direction\"       }     },     \"clothing\": {       \"top\": {         \"type\": \"Item name (from Input B)\",         \"color\": \"Exact color\",         \"graphic\": \"Print details\",         \"fit\": {           \"description\": \"Overall fit (tight, loose)\",           \"chest_situation\": \"Fabric tension/drape on chest\",           \"shape\": \"Silhouette created\",           \"effect\": \"Visual impact\",           \"support\": \"Visual support\",           \"projection\": \"3D form description\"         },         \"length\": \"Hemline position\",         \"neckline\": \"Cut style\",         \"sleeves\": \"Length\",         \"fabric\": \"Material inference\"       },       \"bottom\": {         \"type\": \"Item name (from Input B)\",         \"color\": \"Exact color\",         \"length\": \"Hemline position\",         \"fit_detail\": {           \"waist\": \"Fit at waistband\",           \"ass_fit\": \"Fabric tension over glutes\",           \"ass_situation\": \"Physics of fabric in back\",           \"shape_visibility\": \"Anatomy showing through\",           \"cheeks\": \"Coverage level\",           \"back_seam\": \"Seam stress\",           \"pockets\": \"Placement/Distortion\"         },         \"color_effect\": \"Contrast\",         \"effect\": \"Aesthetic function\"       }     },     \"the_ass_focus\": {       \"size\": \"Visual estimate relative to frame\",       \"position\": \"Angle relative to viewer\",       \"hand_placement\": \"Interaction with hands\",       \"shorts_effect\": \"Framing effect of clothing\",       \"shape\": \"Geometry description\",       \"the_energy\": \"Intent of the angle\"     },     \"the_chest_focus\": {       \"effect\": \"Visual lift/gravity\",       \"shape\": \"Geometry\",       \"fabric_behavior\": \"Tension analysis\",       \"from_side\": \"Profile view description\",       \"green_effect\": \"Color interaction\"     },     \"skin_showing\": {       \"midriff\": \"Visibility description\",       \"legs\": \"Visibility description\",       \"amount\": \"Ratio of skin to cloth\"     },     \"face\": {       \"makeup\": \"Style and intensity\",       \"details\": \"Temporary details (sweat, blush)\",       \"the_angle\": \"How angle affects perception\"     }   },   \"accessories\": {     \"earrings\": {       \"type\": \"Style\",       \"effect\": \"Visual weight\"     },     \"necklaces\": {       \"setup\": \"Layering\",       \"position\": \"Where it rests\"     },     \"bracelets\": {       \"type\": \"Style\",       \"wrist\": \"Which arm\"     },     \"rings\": {       \"amount\": \"Count estimate\",       \"style\": \"Metal/Gem\"     },     \"device\": {       \"type\": \"Phone model inference\",       \"position\": \"Holding style\",       \"angle\": \"Camera tilt\"     }   },   \"room_environment\": {     \"setting\": \"Room type\",     \"mirror\": \"Mirror presence\",     \"lighting\": \"Light source description\",     \"background\": {       \"bed\": \"Furniture visibility\",       \"decor\": \"Visible items\",       \"vibe\": \"Atmosphere\"     }   },   \"photography\": {     \"camera_position\": \"Height and angle\",     \"angle_effect\": \"Psychological effect\",     \"framing\": \"Shot scale\",     \"quality\": \"Texture (grain, sharp)\",     \"aspect\": \"Aspect ratio inference\"   },   \"color_story\": {     \"top\": \"Dominant color 1\",     \"shorts\": \"Dominant color 2\",     \"accessories\": \"Metal color\",     \"overall\": \"Palette summary\"   },   \"the_vibe\": {     \"energy\": \"Total emotional impact\",     \"pose_story\": \"Narrative of the movement\",     \"face_vs_body\": \"Contrast in expression vs pose\",     \"the_hand\": \"Significance of hand placement\",     \"the_angle\": \"Significance of camera angle\",     \"caption_energy\": \"Hypothetical caption vibe\"   },   \"critical_elements\": {     \"phone_height\": \"Technical placement\",     \"eye_direction\": \"Gaze vector\",     \"hand_placement\": \"Key tactile anchor\",     \"ass_angle\": \"Rotation degree approximation\",     \"chest\": \"Prominence summary\",     \"color_combo\": \"Harmony or contrast\",     \"contrast\": \"Thematic juxtaposition\"   },   \"controlnet_strategy\": {     \"recommended_units\": \"List of ControlNets needed (e.g., ['OpenPose', 'Depth'])\",     \"openpose_focus\": \"Specific limb alignment (e.g., Ensure hand on hip is detected)\",     \"depth_focus\": \"Volume priority (e.g., Maintain distance between phone and face)\",     \"canny_threshold\": \"Low/High suggestion for clothing details (e.g., loose for hair, tight for zipper)\",     \"pose_complexity\": \"Rating 1-10 (How hard is this pose to replicate without ControlNet?)\"   } }",
+        "",
+        287952140,
+        "randomize",
+        1,
+        0
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 9,
+      "type": "Ask_Gemini",
+      "pos": [
+        574.2694651523763,
+        807.6528320837195
+      ],
+      "size": [
+        216.599609375,
+        396.19774800901575
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Ask_Gemini",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "",
+        "BLOCK_NONE",
+        "text",
+        "gemini-2.5-flash",
+        "",
+        "",
+        "",
+        "",
+        1595060097,
+        "randomize",
+        1,
+        0
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 18,
+      "type": "LoadImage",
+      "pos": [
+        193.58587106146672,
+        297.4793785123968
+      ],
+      "size": [
+        326.721828125,
+        407.7024000000001
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "example.png",
+        "image"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      7,
+      1,
+      0,
+      8,
+      0,
+      "STRING"
+    ],
+    [
+      8,
+      8,
+      0,
+      12,
+      0,
+      "STRING"
+    ],
+    [
+      9,
+      12,
+      0,
+      14,
+      0,
+      "STRING"
+    ],
+    [
+      11,
+      9,
+      0,
+      15,
+      0,
+      "STRING"
+    ],
+    [
+      12,
+      14,
+      0,
+      9,
+      3,
+      "STRING"
+    ],
+    [
+      15,
+      18,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Generate JSON PROMPT",
+      "bounding": [
+        183.58587106146672,
+        227.4793785123968,
+        1055.0792851368801,
+        493.28298925619856
+      ],
+      "color": "#b58b2a",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Convert JSON Prompt to  LLM Prompt",
+      "bounding": [
+        183.20825811717722,
+        732.8411733745796,
+        1049.2248186646875,
+        487.46930000000015
+      ],
+      "color": "#a1309b",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "ds": {
+      "scale": 0.8264462809917354,
+      "offset": [
+        337.23801519668297,
+        -65.38504162686391
+      ]
+    },
+    "links_added_by_ue": [],
+    "frontendVersion": "1.45.20"
+  },
+  "version": 0.4
+}
