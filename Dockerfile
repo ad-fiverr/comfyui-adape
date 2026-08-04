@@ -18,7 +18,7 @@ ENV PIP_CONSTRAINT=/etc/pip-constraints.txt
 
 # Custom Nodes en /ComfyUI (se copian al workspace en el primer arranque)
 RUN cd /ComfyUI/custom_nodes && \
-    rm -rf rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper ComfyUI-Login ComfyUI-login Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler && \ 
+    rm -rf rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper ComfyUI-Login ComfyUI-login Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler ComfyUI-QwenImageWanBridge && \ 
     git clone --depth=1 https://github.com/rgthree/rgthree-comfy.git && \
     git clone --depth=1 https://github.com/ltdrdata/ComfyUI-Impact-Pack.git && \
     git clone --depth=1 https://github.com/cubiq/ComfyUI_essentials.git && \
@@ -46,27 +46,27 @@ RUN cd /ComfyUI/custom_nodes && \
     git clone --depth=1 https://github.com/RamonGuthrie/ComfyUI-RBG-SmartSeedVariance.git && \
     git clone --depth=1 https://github.com/xxmjskxx/ComfyUI_SaveImageWithMetaDataUniversal.git  && \
     git clone --depth=1 https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git && \
+    git clone --depth=1 https://github.com/fblissjr/ComfyUI-QwenImageWanBridge.git && \
     git clone --depth=1 https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git 
     
 
-RUN for dir in rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-Custom-Scripts ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler; do \
+RUN for dir in rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-Custom-Scripts ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler ComfyUI-QwenImageWanBridge; do \
       REQ="/ComfyUI/custom_nodes/${dir}/requirements.txt"; \
       if [ -f "$REQ" ]; then pip install -q -r "$REQ"; fi; \
     done
-
 
 
 RUN rm -rf /ComfyUI/custom_nodes/ComfyUI-Login /ComfyUI/custom_nodes/ComfyUI-login
 
 
 RUN mkdir -p /ComfyUI/user/default/workflows
-COPY dearmolly_SFW_Workflow_for_Instagram.json /ComfyUI/user/default/workflows/Zimage-T2I-workflow.json
-COPY krea2_de4rmolly-workflow.json /ComfyUI/user/default/workflows/Krea-T2I-workflow.json
-COPY SeedVR2_HD_Image_upscale.json /ComfyUI/user/default/workflows/Zimage-upscaler-workflow.json
-COPY krea2Transferring_v10.json /ComfyUI/user/default/workflows/Krea-I2I-workflow.json
-COPY Flux2_Klein_9b_Inpainting.json /ComfyUI/user/default/workflows/Klein-Inpainting-workflow.json
-COPY de4armolly_Create_Prompt.json /ComfyUI/user/default/workflows/Create-Prompts-workflow.json
-
+COPY Wan22_FF2LF_fastfidelity.json /ComfyUI/user/default/workflows/WAN22-I2V-workflow.json
+COPY Krea2_T2I_workflow.json /ComfyUI/user/default/workflows/Krea-T2I-workflow.json
+COPY Zimage-T2I-workflow.json /ComfyUI/user/default/workflows/Zimage-T2I-workflow.json
+COPY Create-Prompts-workflow.json /ComfyUI/user/default/workflows/Create-Prompts-workflow.json
+COPY Klein-Inpainting-workflow.json /ComfyUI/user/default/workflows/Klein-Inpainting-workflow.json
+COPY Krea-I2I-workflow.json /ComfyUI/user/default/workflows/Krea-I2I-workflow.json
+COPY Zimage-upscaler-workflow.json /ComfyUI/user/default/workflows/Zimage-upscaler-workflow.json
 
 RUN apt-get update -qq && apt-get install -y -qq git wget dos2unix aria2 megatools && \
     pip install -q gdown huggingface_hub comfyui-manager && \
