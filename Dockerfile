@@ -1,4 +1,4 @@
-FROM ls250824/run-comfyui-wan2:20072026
+FROM ls250824/run-comfyui-wan2:30072026
 
 ENV DEBIAN_FRONTEND=noninteractive
 # ComfyUI ya esta en /ComfyUI en la imagen base
@@ -7,10 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq && apt-get install -y -qq git wget && \
     pip install -q gdown && \
     rm -rf /var/lib/apt/lists/*
-
-
-# Fuerza la instalación de PyTorch para CUDA 13.0, FIX "Specify CUDA 12.8 using the runpod console filter"
-RUN pip install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
 
 
 # --- Constraint global ANTES de instalar cualquier custom node ---
