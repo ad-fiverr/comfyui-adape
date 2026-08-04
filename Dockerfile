@@ -8,6 +8,11 @@ RUN apt-get update -qq && apt-get install -y -qq git wget && \
     pip install -q gdown && \
     rm -rf /var/lib/apt/lists/*
 
+
+# Fuerza la instalación de PyTorch para CUDA 13.0, FIX "Specify CUDA 12.8 using the runpod console filter"
+RUN pip install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+
+
 # --- Constraint global ANTES de instalar cualquier custom node ---
 # Así, el pip install -r requirements.txt de ComfyUI-LTXVideo (y de
 # cualquier otro nodo) respeta este límite desde su primera instalación,
