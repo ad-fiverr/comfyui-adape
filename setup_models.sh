@@ -137,56 +137,33 @@ cd ${COMFYUI_DIR}/models/text_encoders && rm -rf split_files/
 download_if_missing "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" \
     "umt5_xxl_fp8_e4m3fn_scaled.safetensors" "$HF_TOKEN"
 
-
-# ------------------------------ LORAS ---
-echo "[ LoRAs ]"
+echo "[ Character LoRas ]"
 cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
 
 
-download_if_missing "https://civitai.red/api/download/models/2553271?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DR34ML4Y_I2V_14B_LOW_V2.safetensors"
+# -----------KLEIN ----------------
+download_if_missing "https://huggingface.co/exjadev/KLEIN-ad_ape_v01/resolve/main/KLEIN_ad_ape_v04/KLEIN_ad_ape_v04_000002100.safetensors" \
+    "character/KLEIN-ad_ape_v01/KLEIN_ad_ape_v04/KLEIN_ad_ape_v04_000002100.safetensors" "$HF_TOKEN"
+# ----------- KREA ----------------
+download_if_missing "https://huggingface.co/exjadev/KREA-ad_ape_v01/resolve/main/Krea_ad_ape_v02/Krea_ad_ape_v02_000001800.safetensors" \
+    "character/KREA-ad_ape_v01/Krea_ad_ape_v02/Krea_ad_ape_v02_000001800.safetensors" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/exjadev/KREA-ad_ape_v01/resolve/main/Krea_ad_ape_v02/Krea_ad_ape_v02_000002250.safetensors" \
+    "character/KREA-ad_ape_v01/Krea_ad_ape_v02/Krea_ad_ape_v02_000002250.safetensors" "$HF_TOKEN"
+# ----------- ZIMAGE ----------------
+download_if_missing "https://huggingface.co/exjadev/ZIMAGE-ad_ape-v01/resolve/main/ad_ape_v01/ad_ape_v01_000001800.safetensors" \
+    "character/ZIMAGE-ad_ape-v01/ad_ape_v01/ad_ape_v01_000001800.safetensors" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/exjadev/ZIMAGE-ad_ape-v01/resolve/main/ad_ape_v01/ad_ape_v01_000002100.safetensors" \
+    "character/ZIMAGE-ad_ape-v01/ad_ape_v01/ad_ape_v01_000002100.safetensors" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/exjadev/ZIMAGE-ad_ape-v01/resolve/main/ad_ape_v01/ad_ape_v01_000002250.safetensors" \
+    "character/ZIMAGE-ad_ape-v01/ad_ape_v01/ad_ape_v01_000002250.safetensors" "$HF_TOKEN"
 
-download_if_missing "https://civitai.red/api/download/models/2553151?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DR34ML4Y_I2V_14B_HIGH_V2.safetensors" 
 
-
-download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "blowjob_I2V_14B_HIGH_V2.safetensors" 
-
-download_if_missing "https://civitai.red/api/download/models/2445044?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "blowjob_I2V_14B_LOW_V2.safetensors" 
-
-
-download_if_missing "https://civitai.red/api/download/models/2209354?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "bounce_test_HighNoise-000005.safetensors" 
-
-download_if_missing "https://civitai.red/api/download/models/2209344?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "bounce_test_LowNoise-000005.safetensors" 
-
-download_if_missing "https://civitai.red/api/download/models/2273468?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "slop_twerk_HighNoise_merged3_7_v2.safetensors" 
-
-download_if_missing "https://civitai.red/api/download/models/2273467?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "slop_twerk_LowNoise_merged3_7_v2.safetensors" 
-
-download_if_missing "https://civitai.red/api/download/models/1973462?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "Wan_facial_t2v.safetensors" 
-    
-download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DaSiWa_Wan22_High_Deepthroat_v11.safetensors" 
-
-cd ${COMFYUI_DIR}/models/loras 
-download_hf_repo_aria2c "exjadev/KLEIN-ad_ape_v01" "./character/KLEIN-ad_ape_v01" "$HF_TOKEN"
-download_hf_repo_aria2c "exjadev/ZIMAGE-ad_ape-v01" "./character/ZIMAGE-ad_ape-v01" "$HF_TOKEN"
-download_hf_repo_aria2c "exjadev/KREA-ad_ape_v01" "./character/KREA-ad_ape_v01" "$HF_TOKEN"
 
 echo "[ VAE ]"
 cd ${COMFYUI_DIR}/models/vae && rm -rf split_files/
 download_if_missing "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_fp32.safetensors" \
     "Wan2_1_VAE_fp32.safetensors" "$HF_TOKEN"
 
-download_if_missing "https://civitai.red/api/download/models/2617751?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "Klein-Realistic_Nudes.safetensors"
 
 
 
@@ -247,6 +224,42 @@ download_if_missing "https://civitai.red/api/download/models/2617751?type=Model&
     "Klein-Realistic_Nudes.safetensors"
 
 
+# ------------------------------ LORAS ---
+echo "[ LoRAs ]"
+cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
+
+
+download_if_missing "https://civitai.red/api/download/models/2553271?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "DR34ML4Y_I2V_14B_LOW_V2.safetensors"
+
+download_if_missing "https://civitai.red/api/download/models/2553151?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "DR34ML4Y_I2V_14B_HIGH_V2.safetensors" 
+
+
+download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "blowjob_I2V_14B_HIGH_V2.safetensors" 
+
+download_if_missing "https://civitai.red/api/download/models/2445044?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "blowjob_I2V_14B_LOW_V2.safetensors" 
+
+
+download_if_missing "https://civitai.red/api/download/models/2209354?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "bounce_test_HighNoise-000005.safetensors" 
+
+download_if_missing "https://civitai.red/api/download/models/2209344?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "bounce_test_LowNoise-000005.safetensors" 
+
+download_if_missing "https://civitai.red/api/download/models/2273468?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "slop_twerk_HighNoise_merged3_7_v2.safetensors" 
+
+download_if_missing "https://civitai.red/api/download/models/2273467?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "slop_twerk_LowNoise_merged3_7_v2.safetensors" 
+
+download_if_missing "https://civitai.red/api/download/models/1973462?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "Wan_facial_t2v.safetensors" 
+    
+download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "DaSiWa_Wan22_High_Deepthroat_v11.safetensors" 
 
 # ── BBOX Ultralytics ──────────────────────────────────────────────────────────
 echo ""
