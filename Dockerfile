@@ -1,25 +1,36 @@
-FROM ls250824/run-comfyui-wan2:30072026
+FROM nvidia/cuda:12.8.1-cudnn-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-# ComfyUI ya esta en /ComfyUI en la imagen base
-# setup_models.sh lo copiara a /workspace/ComfyUI al primer arranque
+ENV PYTHONUNBUFFERED=1
 
-RUN apt-get update -qq && apt-get install -y -qq git wget && \
-    pip install -q gdown && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && apt-get install -y -qq \
+    git wget curl dos2unix aria2 megatools \
+    python3.11 python3.11-venv python3.11-distutils \
+    && rm -rf /var/lib/apt/lists/*
 
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+
+# Bootstrap pip directamente para 3.11 (python3-pip del sistema instala para 3.10, no sirve aquí)
+RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
+
+# --- PyTorch: versión explícita, controlada por ti (no heredada de un tercero) ---
+# cu128 confirmado funcional en tus pruebas con 3090 Ti y 4090.
+# Si más adelante RunPod resuelve el soporte de Blackwell, prueba cambiar a cu130.
+RUN pip install --no-cache-dir torch torchvision torchaudio \
+    --index-url https://download.pytorch.org/whl/cu128
+
+# --- Clonar ComfyUI directamente desde el repo oficial ---
+RUN git clone --depth=1 https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
+RUN pip install --no-cache-dir -r /ComfyUI/requirements.txt
 
 # --- Constraint global ANTES de instalar cualquier custom node ---
-# Así, el pip install -r requirements.txt de ComfyUI-LTXVideo (y de
-# cualquier otro nodo) respeta este límite desde su primera instalación,
-# en vez de instalar una versión rota y luego corregirla.
 RUN echo "kornia==0.6.12" > /etc/pip-constraints.txt
 ENV PIP_CONSTRAINT=/etc/pip-constraints.txt
 
 
-# Custom Nodes en /ComfyUI (se copian al workspace en el primer arranque)
+# --- Custom Nodes ---
 RUN cd /ComfyUI/custom_nodes && \
-    rm -rf rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper ComfyUI-Login ComfyUI-login Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler ComfyUI-QwenImageWanBridge && \ 
     git clone --depth=1 https://github.com/rgthree/rgthree-comfy.git && \
     git clone --depth=1 https://github.com/ltdrdata/ComfyUI-Impact-Pack.git && \
     git clone --depth=1 https://github.com/cubiq/ComfyUI_essentials.git && \
@@ -45,21 +56,25 @@ RUN cd /ComfyUI/custom_nodes && \
     git clone --depth=1 https://github.com/PGCRT/CRT-Nodes.git && \
     git clone --depth=1 https://github.com/CoreyCorza/ComfyUI-CRZnodes.git && \
     git clone --depth=1 https://github.com/RamonGuthrie/ComfyUI-RBG-SmartSeedVariance.git && \
-    git clone --depth=1 https://github.com/xxmjskxx/ComfyUI_SaveImageWithMetaDataUniversal.git  && \
+    git clone --depth=1 https://github.com/xxmjskxx/ComfyUI_SaveImageWithMetaDataUniversal.git && \
     git clone --depth=1 https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git && \
     git clone --depth=1 https://github.com/fblissjr/ComfyUI-QwenImageWanBridge.git && \
-    git clone --depth=1 https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git 
-    
-
-RUN for dir in rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-Custom-Scripts ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler ComfyUI-QwenImageWanBridge; do \
+    git clone --depth=1 https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git && \
+    git clone --depth=1 https://github.com/kijai/ComfyUI-KJNodes.git && \
+    git clone --depth=1 https://github.com/yolain/ComfyUI-Easy-Use.git && \
+    git clone --depth=1 https://github.com/IAMCCS/IAMCCS-nodes.git && \
+    git clone --depth=1 https://github.com/ClownsharkBatwing/RES4LYF.git
+ 
+RUN for dir in rgthree-comfy ComfyUI-Impact-Pack ComfyUI_essentials ComfyUI-GGUF ComfyUI-Impact-Subpack cg-use-everywhere ComfyMath ComfyUI-Custom-Scripts ComfyUI-mxToolkit comfyui-crystools ComfyUI_LayerStyle ComfyUI_Fill-Nodes ComfyUI-Image-Saver ComfyUI-AdvancedLivePortrait ComfyUI-WanVideoWrapper Vantage-Nodes ComfyUI-Gemini ComfyUI-LTXVideo LanPaint ComfyUI_Comfyroll_CustomNodes ComfyUI_Eclipse ComfyUI-Pixaroma CRT-Nodes ComfyUI-CRZnodes ComfyUI-RBG-SmartSeedVariance ComfyUI_SaveImageWithMetaDataUniversal ComfyUI-DaSiWa-Nodes ComfyUI-SeedVR2_VideoUpscaler ComfyUI-QwenImageWanBridge ComfyUI-KJNodes ComfyUI-Easy-Use IAMCCS-nodes RES4LYF; do \
       REQ="/ComfyUI/custom_nodes/${dir}/requirements.txt"; \
       if [ -f "$REQ" ]; then pip install -q -r "$REQ"; fi; \
     done
 
 
+RUN cd /ComfyUI/custom_nodes/ComfyUI-Impact-Pack && python3 install.py || true    
 RUN rm -rf /ComfyUI/custom_nodes/ComfyUI-Login /ComfyUI/custom_nodes/ComfyUI-login
 
-
+# --- Workflows ---
 RUN mkdir -p /ComfyUI/user/default/workflows
 COPY Wan22_FF2LF_fastfidelity.json /ComfyUI/user/default/workflows/WAN22-I2V-workflow.json
 COPY Krea2_T2I_workflow.json /ComfyUI/user/default/workflows/Krea-T2I-workflow.json
@@ -69,16 +84,13 @@ COPY Klein-Inpainting-workflow.json /ComfyUI/user/default/workflows/Klein-Inpain
 COPY Krea-I2I-workflow.json /ComfyUI/user/default/workflows/Krea-I2I-workflow.json
 COPY Zimage-upscaler-workflow.json /ComfyUI/user/default/workflows/Zimage-upscaler-workflow.json
 
-RUN apt-get update -qq && apt-get install -y -qq git wget dos2unix aria2 megatools && \
-    pip install -q gdown huggingface_hub comfyui-manager && \
-    rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir gdown huggingface_hub comfyui-manager
 
 ARG HF_TOKEN
 ENV HF_TOKEN=${HF_TOKEN}
 
 COPY setup_models.sh /setup_models.sh
 RUN dos2unix /setup_models.sh && chmod +x /setup_models.sh
-
 
 EXPOSE 8188
 CMD ["/setup_models.sh"]

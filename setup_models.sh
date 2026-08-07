@@ -1,6 +1,31 @@
 #!/bin/bash
+
+
+# PASO 0: Healthcheck de CUDA — falla rápido si el pod tiene GPU rota
+echo "================================================"
+echo "  Checking CUDA Before Continuing..."
+echo "================================================"
+CUDA_OK=$(python3 -c "import torch; print(torch.cuda.is_available())" 2>/dev/null)
+
+if [ "$CUDA_OK" != "True" ]; then
+    echo ""
+    echo "🔴 CRITICAL ERROR: CUDA is not available in this pod."
+    echo "🔴 nvidia-smi may look fine, but torch.cuda.is_available() = False"
+    echo "🔴 This is a host infrastructure issue (GPU passthrough break)."
+    echo "🔴 ACTION: STOP this pod and launch a new one — DON'T keep going; you'll waste time and money"
+    echo ""
+    echo "--- POD DIAGNOSIS ---"
+    nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv 2>&1 || echo "nvidia-smi also failed"
+    python3 -c "import torch; print('torch:', torch.__version__, 'cuda build:', torch.version.cuda)" 2>&1
+    echo "--------------------------"
+    exit 1
+fi
+
+echo "✅ CUDA available — continuing with the normal setup."
+
+
 # =============================================================================
-# setup_models.sh - Configuración de Modelos AsmitB
+# setup_models.sh - Configuración de RunPod
 # =============================================================================
 
 # Token actualizado según tu solicitud
@@ -8,8 +33,9 @@ HF_TOKEN="${HF_TOKEN}"
 HF_TOKEN_loras="${HF_TOKEN_loras}"
 COMFYUI_DIR="/workspace/ComfyUI"
 
+
 echo "================================================"
-echo "  ComfyUI Model Setup — De4rmolly Edition"
+echo "  ComfyUI Model Setup — ALL IN ONE Edition"
 echo "  THANKS FOR YOUR ORDER, ADRIANFIVERR"
 echo "================================================"
 
@@ -137,10 +163,17 @@ cd ${COMFYUI_DIR}/models/text_encoders && rm -rf split_files/
 download_if_missing "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors" \
     "umt5_xxl_fp8_e4m3fn_scaled.safetensors" "$HF_TOKEN"
 
+
+# ------------------------------ LORAS ---
+echo "[ LoRAs ]"
+cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
+download_if_missing "https://civitai.red/api/download/models/2553271?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "DR34ML4Y_I2V_14B_LOW_V2.safetensors"
+download_if_missing "https://civitai.red/api/download/models/2553151?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "DR34ML4Y_I2V_14B_HIGH_V2.safetensors" 
+
 echo "[ Character LoRas ]"
 cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
-
-
 # -----------KLEIN ----------------
 download_if_missing "https://huggingface.co/exjadev/KLEIN-ad_ape_v01/resolve/main/KLEIN_ad_ape_v04/KLEIN_ad_ape_v04_000002100.safetensors" \
     "character/KLEIN-ad_ape_v01/KLEIN_ad_ape_v04/KLEIN_ad_ape_v04_000002100.safetensors" "$HF_TOKEN"
@@ -165,11 +198,53 @@ download_if_missing "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wa
     "Wan2_1_VAE_fp32.safetensors" "$HF_TOKEN"
 
 
+# --- SAM3 ---
+echo "[ ----------- Downloading SAM3 -----------  ]"
+cd ${COMFYUI_DIR}/models/sam3
+download_if_missing "https://huggingface.co/facebook/sam3/resolve/main/sam3.pt" \
+    "sam3.pt" "$HF_TOKEN"
+
+
+    # ── SAMS (ReActor/Segment Anything) ──────────────────────────────────────────
+echo "[ SAM3 ]"
+cd ${COMFYUI_DIR}/models/sams
+download_if_missing "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/sams/sam_vit_b_01ec64.pth" \
+    "sam_vit_b_01ec64.pth" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/HCMUE-Research/SAM-vit-h/resolve/main/sam_vit_h_4b8939.pth" \
+    "sam_vit_h_4b8939.pth" "$HF_TOKEN"
+
+
+# ── BBOX Ultralytics ──────────────────────────────────────────────────────────
+echo ""
+echo "[ BBOX Ultralytics ]"
+cd ${COMFYUI_DIR}/models/ultralytics/bbox && rm -rf split_files/
+download_if_missing "https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov8m.pt" \
+    "face_yolov8m.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/ashllay/YOLO_Models/resolve/main/bbox/female_breast-v4.2.pt" \
+    "female_breast-v4.2.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/ashllay/YOLO_Models/resolve/main/bbox/vagina-v3.2.pt" \
+    "vagina-v3.2.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/ashllay/YOLO_Models/resolve/main/bbox/full_eyes_detect_v1.pt" \
+    "full_eyes_detect_v1.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/xingren23/comfyflow-models/resolve/976de8449674de379b02c144d0b3cfa2b61482f2/ultralytics/bbox/hand_yolov8s.pt" \
+    "hand_yolov8s.pt" "$HF_TOKEN"
+
+
+echo "[-----------  Downloading BBOX Ultralytics SEGM -----------  ]"
+cd ${COMFYUI_DIR}/models/ultralytics/segm
+download_if_missing "https://huggingface.co/Bingsu/adetailer/resolve/main/person_yolov8m-seg.pt" \
+    "person_yolov8m-seg.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/24xx/segm/resolve/main/deepfashion2_yolov8s-seg.pt" \
+    "deepfashion2_yolov8s-seg.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/24xx/segm/resolve/main/hair_yolov8n-seg_60.pt" \
+    "hair_yolov8n-seg_60.pt" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/24xx/segm/resolve/main/skin_yolov8n-seg_800.pt" \
+    "skin_yolov8n-seg_800.pt" "$HF_TOKEN"
+
 
 
 # ── SECCIÓN DE DESCARGAS MODELOS DE IMAGEN ─────────────────────────
 (
-
 # --- DIFFUSION MODELS ---
 echo "[ ------- Downloading Diffusion Models -------]"
 cd ${COMFYUI_DIR}/models/diffusion_models && rm -rf split_files/
@@ -222,26 +297,11 @@ download_if_missing "https://civitai.red/api/download/models/2960754?type=Model&
 
 download_if_missing "https://civitai.red/api/download/models/2617751?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "Klein-Realistic_Nudes.safetensors"
-
-
-# ------------------------------ LORAS ---
-echo "[ LoRAs ]"
-cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
-
-
-download_if_missing "https://civitai.red/api/download/models/2553271?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DR34ML4Y_I2V_14B_LOW_V2.safetensors"
-
-download_if_missing "https://civitai.red/api/download/models/2553151?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DR34ML4Y_I2V_14B_HIGH_V2.safetensors" 
-
-
 download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "blowjob_I2V_14B_HIGH_V2.safetensors" 
 
 download_if_missing "https://civitai.red/api/download/models/2445044?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "blowjob_I2V_14B_LOW_V2.safetensors" 
-
 
 download_if_missing "https://civitai.red/api/download/models/2209354?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "bounce_test_HighNoise-000005.safetensors" 
@@ -260,33 +320,6 @@ download_if_missing "https://civitai.red/api/download/models/1973462?type=Model&
     
 download_if_missing "https://civitai.red/api/download/models/2441730?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
     "DaSiWa_Wan22_High_Deepthroat_v11.safetensors" 
-
-# ── BBOX Ultralytics ──────────────────────────────────────────────────────────
-echo ""
-echo "[ BBOX Ultralytics ]"
-cd ${COMFYUI_DIR}/models/ultralytics/bbox && rm -rf split_files/
-download_if_missing "https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov8m.pt" \
-    "face_yolov8m.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/ashllay/YOLO_Models/resolve/main/bbox/female_breast-v4.2.pt" \
-    "female_breast-v4.2.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/ashllay/YOLO_Models/resolve/main/bbox/vagina-v3.2.pt" \
-    "vagina-v3.2.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/ashllay/YOLO_Models/resolve/main/bbox/full_eyes_detect_v1.pt" \
-    "full_eyes_detect_v1.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/xingren23/comfyflow-models/resolve/976de8449674de379b02c144d0b3cfa2b61482f2/ultralytics/bbox/hand_yolov8s.pt" \
-    "hand_yolov8s.pt" "$HF_TOKEN"
-
-
-echo "[-----------  Downloading BBOX Ultralytics SEGM -----------  ]"
-cd ${COMFYUI_DIR}/models/ultralytics/segm
-download_if_missing "https://huggingface.co/Bingsu/adetailer/resolve/main/person_yolov8m-seg.pt" \
-    "person_yolov8m-seg.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/24xx/segm/resolve/main/deepfashion2_yolov8s-seg.pt" \
-    "deepfashion2_yolov8s-seg.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/24xx/segm/resolve/main/hair_yolov8n-seg_60.pt" \
-    "hair_yolov8n-seg_60.pt" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/24xx/segm/resolve/main/skin_yolov8n-seg_800.pt" \
-    "skin_yolov8n-seg_800.pt" "$HF_TOKEN"
 
 
 
@@ -308,21 +341,6 @@ megadl 'https://mega.nz/folder/Xc4wnC7T#yUS5-9-AbRxLhpdPW_8f2w'
 
 
 
-# --- SAM3 ---
-echo "[ ----------- Downloading SAM3 -----------  ]"
-cd ${COMFYUI_DIR}/models/sam3
-download_if_missing "https://huggingface.co/facebook/sam3/resolve/main/sam3.pt" \
-    "sam3.pt" "$HF_TOKEN"
-
-
-    # ── SAMS (ReActor/Segment Anything) ──────────────────────────────────────────
-echo "[ SAM3 ]"
-cd ${COMFYUI_DIR}/models/sams
-download_if_missing "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/sams/sam_vit_b_01ec64.pth" \
-    "sam_vit_b_01ec64.pth" "$HF_TOKEN"
-download_if_missing "https://huggingface.co/HCMUE-Research/SAM-vit-h/resolve/main/sam_vit_h_4b8939.pth" \
-    "sam_vit_h_4b8939.pth" "$HF_TOKEN"
-
 
 
 
@@ -341,8 +359,6 @@ echo "[ Starting download SEEDV2 ]"
 cd ${COMFYUI_DIR}/models/SEEDVR2
 download_if_missing "https://huggingface.co/numz/SeedVR2_comfyUI/resolve/main/seedvr2_ema_7b_sharp_fp16.safetensors" \
     "seedvr2_ema_7b_sharp_fp16.safetensors" "$HF_TOKEN"
-
-
 
 
 ) &
@@ -368,4 +384,4 @@ echo "================================================"
 
 chmod -R 777 /workspace/ComfyUI
 
-exec python /workspace/ComfyUI/main.py --listen 0.0.0.0 --port 8188 --enable-manager
+exec python /workspace/ComfyUI/main.py --listen 0.0.0.0 --port 8188 --enable-manager --highvram --fast
