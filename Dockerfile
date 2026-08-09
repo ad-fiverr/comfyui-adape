@@ -97,7 +97,7 @@ RUN rm -rf /ComfyUI/custom_nodes/ComfyUI-Login /ComfyUI/custom_nodes/ComfyUI-log
 # --- Workflows ---
 RUN mkdir -p /ComfyUI/user/default/workflows
 COPY Wan22_FF2LF_fastfidelity.json /ComfyUI/user/default/workflows/WAN22-I2V-workflow.json
-COPY Krea2_T2I_workflow.json /ComfyUI/user/default/workflows/Krea-T2I-workflow.json
+COPY Krea-T2I-workflow.json /ComfyUI/user/default/workflows/Krea-T2I-workflow.json
 COPY Zimage-T2I-workflow.json /ComfyUI/user/default/workflows/Zimage-T2I-workflow.json
 COPY Create-Prompts-workflow.json /ComfyUI/user/default/workflows/Create-Prompts-workflow.json
 COPY Klein-Inpainting-workflow.json /ComfyUI/user/default/workflows/Klein-Inpainting-workflow.json
