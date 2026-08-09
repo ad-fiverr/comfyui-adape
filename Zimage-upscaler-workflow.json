@@ -1,8 +1,8 @@
 {
   "id": "e2c8e6ec-9e8a-4a81-a240-7e7d2befc2bf",
   "revision": 0,
-  "last_node_id": 356,
-  "last_link_id": 705,
+  "last_node_id": 359,
+  "last_link_id": 719,
   "nodes": [
     {
       "id": 228,
@@ -18,7 +18,7 @@
       "flags": {
         "pinned": true
       },
-      "order": 6,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -31,7 +31,7 @@
           "dir": 3,
           "name": "image_b",
           "type": "IMAGE",
-          "link": 679
+          "link": 715
         }
       ],
       "outputs": [
@@ -57,12 +57,12 @@
           {
             "name": "A",
             "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_gvpgg_00009_.png&type=temp&subfolder=&rand=0.9464088573953274"
+            "url": "/api/view?filename=rgthree.compare._temp_tkntm_00003_.png&type=temp&subfolder=&rand=0.7443363351763459"
           },
           {
             "name": "B",
             "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_gvpgg_00010_.png&type=temp&subfolder=&rand=0.17914820858656044"
+            "url": "/api/view?filename=rgthree.compare._temp_tkntm_00004_.png&type=temp&subfolder=&rand=0.8272438077897513"
           }
         ]
       ]
@@ -110,7 +110,7 @@
         }
       },
       "widgets_values": [
-        "ComfyUI_temp_vjyil_00001_.png",
+        "ComfyUI_temp_gheek_00001_.png",
         "image"
       ],
       "color": "#232",
@@ -125,7 +125,7 @@
       ],
       "size": [
         210,
-        698.4578313253012
+        698.4578313253013
       ],
       "flags": {
         "pinned": true
@@ -144,7 +144,7 @@
           "name": "image",
           "type": "IMAGE",
           "links": [
-            679
+            714
           ]
         },
         {
@@ -158,221 +158,46 @@
           "name": "",
           "type": "IMAGE",
           "links": [
-            681,
-            682
+            716,
+            718
           ]
         }
       ],
       "properties": {
-        "proxyWidgets": [
-          [
-            "59",
-            "text"
-          ],
-          [
-            "67",
-            "seed"
-          ],
-          [
-            "33",
-            "seed"
-          ],
-          [
-            "265",
-            "text"
-          ],
-          [
-            "256",
-            "seed"
-          ],
-          [
-            "281",
-            "text"
-          ],
-          [
-            "273",
-            "seed"
-          ],
-          [
-            "325",
-            "seed"
-          ],
-          [
-            "314",
-            "text"
-          ]
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "proxyWidgetErrorQuarantine": [
+          {
+            "originalEntry": [
+              "281",
+              "text"
+            ],
+            "reason": "missingSourceNode",
+            "attemptedAtVersion": 1
+          },
+          {
+            "originalEntry": [
+              "273",
+              "seed"
+            ],
+            "reason": "missingSourceNode",
+            "attemptedAtVersion": 1
+          }
         ],
-        "ue_properties": {
-          "widget_ue_connectable": {},
-          "input_ue_unconnectable": {},
-          "version": "7.8"
-        }
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 327,
-      "type": "Image Comparer (rgthree)",
-      "pos": [
-        2495.7087472852777,
-        -1412.788831396849
-      ],
-      "size": [
-        566.4568504333937,
-        823.089476881448
-      ],
-      "flags": {
-        "pinned": true
-      },
-      "order": 7,
-      "mode": 0,
-      "inputs": [
-        {
-          "dir": 3,
-          "name": "image_a",
-          "type": "IMAGE",
-          "link": 680
-        },
-        {
-          "dir": 3,
-          "name": "image_b",
-          "type": "IMAGE",
-          "link": 681
-        }
-      ],
-      "outputs": [
-        {
-          "dir": 4,
-          "name": "images",
-          "shape": 3,
-          "type": "IMAGE",
-          "links": null
-        }
-      ],
-      "properties": {
-        "comparer_mode": "Slide",
-        "ue_properties": {
-          "widget_ue_connectable": {},
-          "input_ue_unconnectable": {},
-          "version": "7.8"
-        }
+        "previewExposures": []
       },
       "widgets_values": [
-        [
-          {
-            "name": "A",
-            "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_usvxb_00009_.png&type=temp&subfolder=&rand=0.6404361113581342"
-          },
-          {
-            "name": "B",
-            "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_usvxb_00010_.png&type=temp&subfolder=&rand=0.9368026584913226"
-          }
-        ]
+        "de4rmolly, Extreme close-up eyes refinement of the woman, maintaining her exact features and identity. Sharp, clear eyes with defined eyelashes and limbal rings. Natural, soft lighting highlighting the perfect skin clarity. (hyperrealistic, high quality, 8k).",
+        471085098601224,
+        42,
+        "Extreme close-up refinement of hair, maintaining exact strand textures and structural flow. Sharp, clear hair with defined individual strands, natural shine, and precise volume. Uphold original lighting and environmental context. (hyperrealistic, high quality, 8k).",
+        99383823534987,
+        99383823534987,
+        "de4rmolly, Extreme close-up eyes refinement of the woman, maintaining her exact features and identity. Sharp, clear eyes with defined eyelashes and limbal rings. Natural, soft lighting highlighting the perfect skin clarity. (hyperrealistic, high quality, 8k)."
       ]
-    },
-    {
-      "id": 337,
-      "type": "Image Comparer (rgthree)",
-      "pos": [
-        2019.2516277639236,
-        -1403.2802176995533
-      ],
-      "size": [
-        451.4950317953062,
-        818.1738641176092
-      ],
-      "flags": {
-        "pinned": true
-      },
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "dir": 3,
-          "name": "image_a",
-          "type": "IMAGE",
-          "link": 650
-        },
-        {
-          "dir": 3,
-          "name": "image_b",
-          "type": "IMAGE",
-          "link": 682
-        }
-      ],
-      "outputs": [
-        {
-          "dir": 4,
-          "name": "images",
-          "shape": 3,
-          "type": "IMAGE",
-          "links": null
-        }
-      ],
-      "title": "SeedVR2 - Upscaled + Facedetailer",
-      "properties": {
-        "comparer_mode": "Slide",
-        "ue_properties": {
-          "widget_ue_connectable": {},
-          "input_ue_unconnectable": {},
-          "version": "7.8"
-        }
-      },
-      "widgets_values": [
-        [
-          {
-            "name": "A",
-            "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_lhyrq_00009_.png&type=temp&subfolder=&rand=0.18027664266255294"
-          },
-          {
-            "name": "B",
-            "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_lhyrq_00010_.png&type=temp&subfolder=&rand=0.9056109582395636"
-          }
-        ]
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 354,
-      "type": "Label (rgthree)",
-      "pos": [
-        1334.8374140153383,
-        -1557.8231963728404
-      ],
-      "size": [
-        500.91796875,
-        20
-      ],
-      "flags": {
-        "allow_interaction": true
-      },
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "title": "Dont forget to review my service. New prompt every day.",
-      "properties": {
-        "fontSize": 20,
-        "fontFamily": "Arial",
-        "fontColor": "#ffffff",
-        "textAlign": "left",
-        "backgroundColor": "transparent",
-        "padding": 0,
-        "borderRadius": 0,
-        "angle": 0,
-        "ue_properties": {
-          "widget_ue_connectable": {},
-          "input_ue_unconnectable": {},
-          "version": "7.5.2"
-        }
-      },
-      "color": "#fff0",
-      "bgcolor": "#fff0"
     },
     {
       "id": 355,
@@ -388,7 +213,7 @@
       "flags": {
         "allow_interaction": true
       },
-      "order": 2,
+      "order": 1,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -425,7 +250,7 @@
       "flags": {
         "allow_interaction": true
       },
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -462,7 +287,7 @@
       "flags": {
         "pinned": true
       },
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -486,6 +311,296 @@
           "version": "7.8"
         }
       }
+    },
+    {
+      "id": 354,
+      "type": "Label (rgthree)",
+      "pos": [
+        1334.8374140153383,
+        -1557.8231963728404
+      ],
+      "size": [
+        500.91796875,
+        20
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Dont forget to review my service. New prompt every day.",
+      "properties": {
+        "fontSize": 20,
+        "fontFamily": "Arial",
+        "fontColor": "#ffffff",
+        "textAlign": "left",
+        "backgroundColor": "transparent",
+        "padding": 0,
+        "borderRadius": 0,
+        "angle": 0,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.2"
+        }
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    },
+    {
+      "id": 357,
+      "type": "easy cleanGpuUsed",
+      "pos": [
+        1545.2420071545512,
+        -1427.6952859472074
+      ],
+      "size": [
+        161.3404296875,
+        26
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 714
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            715
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy cleanGpuUsed",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 358,
+      "type": "easy cleanGpuUsed",
+      "pos": [
+        1866.0916174128395,
+        -1493.7082390498308
+      ],
+      "size": [
+        161.3404296875,
+        26
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 716
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            717
+          ]
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "Node name for S&R": "easy cleanGpuUsed"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 337,
+      "type": "Image Comparer (rgthree)",
+      "pos": [
+        2010.1270950878225,
+        -1411.829015592147
+      ],
+      "size": [
+        451.4950317953062,
+        818.1738641176092
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 650
+        },
+        {
+          "dir": 3,
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 717
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "images",
+          "shape": 3,
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "SeedVR2 - Upscaled + Facedetailer",
+      "properties": {
+        "comparer_mode": "Slide",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_enfqd_00001_.png&type=temp&subfolder=&rand=0.4918145538135571"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_enfqd_00002_.png&type=temp&subfolder=&rand=0.17012515705761255"
+          }
+        ]
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 359,
+      "type": "easy cleanGpuUsed",
+      "pos": [
+        2419.9579572173793,
+        -1469.6433025778636
+      ],
+      "size": [
+        161.3404296875,
+        26
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 718
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [
+            719
+          ]
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "Node name for S&R": "easy cleanGpuUsed"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 327,
+      "type": "Image Comparer (rgthree)",
+      "pos": [
+        2482.578086563767,
+        -1404.5273054348988
+      ],
+      "size": [
+        566.4568504333937,
+        823.089476881448
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 680
+        },
+        {
+          "dir": 3,
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 719
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "images",
+          "shape": 3,
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "comparer_mode": "Slide",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_jvybm_00001_.png&type=temp&subfolder=&rand=0.5995152777378869"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_jvybm_00002_.png&type=temp&subfolder=&rand=0.93341399576125"
+          }
+        ]
+      ]
     }
   ],
   "links": [
@@ -514,14 +629,6 @@
       "IMAGE"
     ],
     [
-      679,
-      350,
-      0,
-      228,
-      1,
-      "IMAGE"
-    ],
-    [
       680,
       350,
       1,
@@ -530,18 +637,50 @@
       "IMAGE"
     ],
     [
-      681,
+      714,
       350,
-      2,
-      327,
+      0,
+      357,
+      0,
+      "IMAGE"
+    ],
+    [
+      715,
+      357,
+      0,
+      228,
       1,
       "IMAGE"
     ],
     [
-      682,
+      716,
       350,
       2,
+      358,
+      0,
+      "IMAGE"
+    ],
+    [
+      717,
+      358,
+      0,
       337,
+      1,
+      "IMAGE"
+    ],
+    [
+      718,
+      350,
+      2,
+      359,
+      0,
+      "IMAGE"
+    ],
+    [
+      719,
+      359,
+      0,
+      327,
       1,
       "IMAGE"
     ]
@@ -579,8 +718,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 18,
-          "lastNodeId": 356,
-          "lastLinkId": 705,
+          "lastNodeId": 359,
+          "lastLinkId": 719,
           "lastRerouteId": 0
         },
         "revision": 0,
@@ -592,7 +731,7 @@
             -2394.317209886527,
             2165.203464906696,
             128,
-            68
+            208
           ]
         },
         "outputNode": {
@@ -616,6 +755,90 @@
             "pos": [
               -2290.317209886527,
               2189.203464906696
+            ]
+          },
+          {
+            "id": "f99a9646-afd2-4f7f-9692-441b6b6aac63",
+            "name": "text",
+            "type": "STRING",
+            "linkIds": [
+              706
+            ],
+            "pos": [
+              -2290.317209886527,
+              2209.203464906696
+            ]
+          },
+          {
+            "id": "c2c924b1-fad6-4c99-b234-a2b8900b312b",
+            "name": "seed",
+            "type": "INT",
+            "linkIds": [
+              707
+            ],
+            "pos": [
+              -2290.317209886527,
+              2229.203464906696
+            ]
+          },
+          {
+            "id": "e2eb0e04-d192-4cf5-bab1-32999f6fa3d2",
+            "name": "seed_1",
+            "type": "INT",
+            "linkIds": [
+              708
+            ],
+            "pos": [
+              -2290.317209886527,
+              2249.203464906696
+            ]
+          },
+          {
+            "id": "c866a55f-f620-49fd-9163-f22d7535bd75",
+            "name": "text_1",
+            "type": "STRING",
+            "linkIds": [
+              709
+            ],
+            "pos": [
+              -2290.317209886527,
+              2269.203464906696
+            ]
+          },
+          {
+            "id": "c53d4066-5555-4a80-b258-885bb82e1d0a",
+            "name": "seed_2",
+            "type": "INT",
+            "linkIds": [
+              710
+            ],
+            "pos": [
+              -2290.317209886527,
+              2289.203464906696
+            ]
+          },
+          {
+            "id": "a438d34a-06be-4bc8-a008-5d6b6c3ba855",
+            "name": "seed_3",
+            "type": "INT",
+            "linkIds": [
+              711
+            ],
+            "pos": [
+              -2290.317209886527,
+              2309.203464906696
+            ]
+          },
+          {
+            "id": "7f9c9d0f-2400-427f-9eb8-66cbb6da19c8",
+            "name": "text_2",
+            "type": "STRING",
+            "linkIds": [
+              712
+            ],
+            "pos": [
+              -2290.317209886527,
+              2329.203464906696
             ]
           }
         ],
@@ -674,7 +897,7 @@
               26
             ],
             "flags": {},
-            "order": 43,
+            "order": 38,
             "mode": 4,
             "inputs": [
               {
@@ -1025,7 +1248,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 42,
+            "order": 35,
             "mode": 4,
             "inputs": [
               {
@@ -1284,7 +1507,7 @@
               26
             ],
             "flags": {},
-            "order": 35,
+            "order": 32,
             "mode": 0,
             "inputs": [
               {
@@ -1329,7 +1552,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 39,
+            "order": 37,
             "mode": 0,
             "inputs": [
               {
@@ -1373,7 +1596,7 @@
             "flags": {
               "pinned": true
             },
-            "order": 32,
+            "order": 30,
             "mode": 0,
             "inputs": [
               {
@@ -1413,7 +1636,7 @@
               26
             ],
             "flags": {},
-            "order": 34,
+            "order": 31,
             "mode": 0,
             "inputs": [
               {
@@ -1509,7 +1732,7 @@
                 "name": "MODEL",
                 "type": "MODEL",
                 "links": [
-                  370
+                  713
                 ]
               }
             ],
@@ -1541,7 +1764,7 @@
               26
             ],
             "flags": {},
-            "order": 29,
+            "order": 27,
             "mode": 0,
             "inputs": [
               {
@@ -1626,7 +1849,7 @@
               26
             ],
             "flags": {},
-            "order": 24,
+            "order": 23,
             "mode": 0,
             "inputs": [
               {
@@ -1668,7 +1891,7 @@
               26
             ],
             "flags": {},
-            "order": 33,
+            "order": 49,
             "mode": 0,
             "inputs": [
               {
@@ -1712,7 +1935,7 @@
               286
             ],
             "flags": {},
-            "order": 48,
+            "order": 43,
             "mode": 0,
             "inputs": [
               {
@@ -1790,7 +2013,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 53,
+            "order": 48,
             "mode": 0,
             "inputs": [
               {
@@ -1890,7 +2113,7 @@
               26
             ],
             "flags": {},
-            "order": 30,
+            "order": 28,
             "mode": 0,
             "inputs": [
               {
@@ -1930,7 +2153,7 @@
               26
             ],
             "flags": {},
-            "order": 25,
+            "order": 24,
             "mode": 0,
             "inputs": [
               {
@@ -1972,7 +2195,7 @@
               26
             ],
             "flags": {},
-            "order": 40,
+            "order": 57,
             "mode": 0,
             "inputs": [
               {
@@ -2063,7 +2286,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 37,
+            "order": 36,
             "mode": 0,
             "inputs": [
               {
@@ -2071,6 +2294,15 @@
                 "name": "clip",
                 "type": "CLIP",
                 "link": 386
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 706
               }
             ],
             "outputs": [
@@ -2108,7 +2340,7 @@
               26
             ],
             "flags": {},
-            "order": 45,
+            "order": 40,
             "mode": 4,
             "inputs": [
               {
@@ -2152,7 +2384,7 @@
               1264.9375
             ],
             "flags": {},
-            "order": 44,
+            "order": 39,
             "mode": 0,
             "inputs": [
               {
@@ -2224,6 +2456,15 @@
                 "shape": 7,
                 "type": "SCHEDULER_FUNC",
                 "link": null
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 707
               },
               {
                 "localized_name": "steps",
@@ -2351,7 +2592,7 @@
               386
             ],
             "flags": {},
-            "order": 41,
+            "order": 34,
             "mode": 4,
             "inputs": [
               {
@@ -2371,6 +2612,15 @@
                 "name": "vae",
                 "type": "SEEDVR2_VAE",
                 "link": 38
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 708
               }
             ],
             "outputs": [
@@ -2502,7 +2752,7 @@
               26
             ],
             "flags": {},
-            "order": 36,
+            "order": 33,
             "mode": 0,
             "inputs": [
               {
@@ -2547,7 +2797,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 49,
+            "order": 44,
             "mode": 0,
             "inputs": [
               {
@@ -2587,87 +2837,6 @@
             ],
             "color": "#233",
             "bgcolor": "#355"
-          },
-          {
-            "id": 72,
-            "type": "IAMCCS_VRAMCleanup",
-            "pos": [
-              -1274.5104603865782,
-              -355.723781670557
-            ],
-            "size": [
-              361.839453125,
-              122
-            ],
-            "flags": {},
-            "order": 27,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "shape": 7,
-                "type": "MODEL",
-                "link": 371
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "shape": 7,
-                "type": "CLIP",
-                "link": 683
-              },
-              {
-                "localized_name": "vae",
-                "name": "vae",
-                "shape": 7,
-                "type": "VAE",
-                "link": 367
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "type": "MODEL",
-                "links": [
-                  374,
-                  475,
-                  572
-                ]
-              },
-              {
-                "localized_name": "clip",
-                "name": "clip",
-                "type": "CLIP",
-                "links": [
-                  379
-                ]
-              },
-              {
-                "localized_name": "vae",
-                "name": "vae",
-                "type": "VAE",
-                "links": [
-                  157
-                ]
-              }
-            ],
-            "properties": {
-              "Node name for S&R": "IAMCCS_VRAMCleanup",
-              "ue_properties": {
-                "widget_ue_connectable": {},
-                "input_ue_unconnectable": {},
-                "version": "7.8"
-              }
-            },
-            "widgets_values": [
-              true,
-              true
-            ],
-            "color": "#332922",
-            "bgcolor": "#593930",
-            "shape": 1
           },
           {
             "id": 335,
@@ -2721,7 +2890,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 56,
+            "order": 52,
             "mode": 0,
             "inputs": [
               {
@@ -2765,7 +2934,7 @@
               224
             ],
             "flags": {},
-            "order": 51,
+            "order": 46,
             "mode": 0,
             "inputs": [
               {
@@ -2829,7 +2998,7 @@
               26
             ],
             "flags": {},
-            "order": 55,
+            "order": 51,
             "mode": 0,
             "inputs": [
               {
@@ -2873,7 +3042,7 @@
               58
             ],
             "flags": {},
-            "order": 54,
+            "order": 50,
             "mode": 0,
             "inputs": [
               {
@@ -2922,7 +3091,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 28,
+            "order": 53,
             "mode": 0,
             "inputs": [
               {
@@ -2930,6 +3099,15 @@
                 "name": "clip",
                 "type": "CLIP",
                 "link": 497
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 709
               }
             ],
             "outputs": [
@@ -2969,7 +3147,7 @@
               26
             ],
             "flags": {},
-            "order": 58,
+            "order": 55,
             "mode": 0,
             "inputs": [
               {
@@ -3011,7 +3189,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 69,
+            "order": 68,
             "mode": 0,
             "inputs": [
               {
@@ -3070,7 +3248,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 57,
+            "order": 54,
             "mode": 0,
             "inputs": [
               {
@@ -3132,7 +3310,7 @@
               1302.9156626506024
             ],
             "flags": {},
-            "order": 50,
+            "order": 45,
             "mode": 0,
             "inputs": [
               {
@@ -3190,6 +3368,15 @@
                 "shape": 7,
                 "type": "SCHEDULER_FUNC",
                 "link": null
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 710
               }
             ],
             "outputs": [
@@ -3365,7 +3552,7 @@
               26
             ],
             "flags": {},
-            "order": 63,
+            "order": 62,
             "mode": 0,
             "inputs": [
               {
@@ -3410,7 +3597,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 59,
+            "order": 56,
             "mode": 0,
             "inputs": [
               {
@@ -3467,7 +3654,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 68,
+            "order": 67,
             "mode": 0,
             "inputs": [
               {
@@ -3566,7 +3753,7 @@
               82
             ],
             "flags": {},
-            "order": 60,
+            "order": 59,
             "mode": 0,
             "inputs": [
               {
@@ -3616,7 +3803,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 38,
+            "order": 58,
             "mode": 0,
             "inputs": [
               {
@@ -3624,6 +3811,15 @@
                 "name": "clip",
                 "type": "CLIP",
                 "link": 582
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 712
               }
             ],
             "outputs": [
@@ -3665,7 +3861,7 @@
             "flags": {
               "collapsed": true
             },
-            "order": 64,
+            "order": 63,
             "mode": 0,
             "inputs": [
               {
@@ -3727,7 +3923,7 @@
               126
             ],
             "flags": {},
-            "order": 31,
+            "order": 29,
             "mode": 0,
             "inputs": [
               {
@@ -3791,7 +3987,7 @@
               26
             ],
             "flags": {},
-            "order": 47,
+            "order": 42,
             "mode": 0,
             "inputs": [
               {
@@ -3822,54 +4018,6 @@
                 "input_ue_unconnectable": {}
               }
             }
-          },
-          {
-            "id": 197,
-            "type": "PathchSageAttentionKJ",
-            "pos": [
-              -1557.4290771376782,
-              55.431154964723454
-            ],
-            "size": [
-              270,
-              82
-            ],
-            "flags": {},
-            "order": 23,
-            "mode": 0,
-            "inputs": [
-              {
-                "localized_name": "model",
-                "name": "model",
-                "type": "MODEL",
-                "link": 370
-              }
-            ],
-            "outputs": [
-              {
-                "localized_name": "MODEL",
-                "name": "MODEL",
-                "type": "MODEL",
-                "links": [
-                  371
-                ]
-              }
-            ],
-            "properties": {
-              "Node name for S&R": "PathchSageAttentionKJ",
-              "ue_properties": {
-                "widget_ue_connectable": {},
-                "input_ue_unconnectable": {},
-                "version": "7.8"
-              }
-            },
-            "widgets_values": [
-              "sageattn_qk_int8_pv_fp16_cuda",
-              false
-            ],
-            "color": "#ffffff",
-            "bgcolor": "#ffffff",
-            "shape": "card"
           },
           {
             "id": 56,
@@ -3923,7 +4071,7 @@
               82
             ],
             "flags": {},
-            "order": 52,
+            "order": 47,
             "mode": 0,
             "inputs": [
               {
@@ -4091,7 +4239,7 @@
               224
             ],
             "flags": {},
-            "order": 66,
+            "order": 65,
             "mode": 0,
             "inputs": [
               {
@@ -4155,7 +4303,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 62,
+            "order": 61,
             "mode": 0,
             "inputs": [
               {
@@ -4210,7 +4358,7 @@
             "flags": {
               "collapsed": false
             },
-            "order": 67,
+            "order": 66,
             "mode": 0,
             "inputs": [
               {
@@ -4272,7 +4420,7 @@
               26
             ],
             "flags": {},
-            "order": 61,
+            "order": 60,
             "mode": 0,
             "inputs": [
               {
@@ -4314,7 +4462,7 @@
               1108.5454545454545
             ],
             "flags": {},
-            "order": 65,
+            "order": 64,
             "mode": 0,
             "inputs": [
               {
@@ -4372,6 +4520,15 @@
                 "shape": 7,
                 "type": "SCHEDULER_FUNC",
                 "link": null
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 711
               }
             ],
             "outputs": [
@@ -4415,6 +4572,87 @@
             ],
             "color": "#223",
             "bgcolor": "#335"
+          },
+          {
+            "id": 72,
+            "type": "IAMCCS_VRAMCleanup",
+            "pos": [
+              -1262.1814508056739,
+              -359.01367486581154
+            ],
+            "size": [
+              361.839453125,
+              122
+            ],
+            "flags": {},
+            "order": 25,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "shape": 7,
+                "type": "MODEL",
+                "link": 713
+              },
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "shape": 7,
+                "type": "CLIP",
+                "link": 683
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "shape": 7,
+                "type": "VAE",
+                "link": 367
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "links": [
+                  374,
+                  475,
+                  572
+                ]
+              },
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "links": [
+                  379
+                ]
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "links": [
+                  157
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "IAMCCS_VRAMCleanup",
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "input_ue_unconnectable": {},
+                "version": "7.8"
+              }
+            },
+            "widgets_values": [
+              true,
+              true
+            ],
+            "color": "#332922",
+            "bgcolor": "#593930",
+            "shape": 1
           }
         ],
         "groups": [
@@ -4629,14 +4867,6 @@
             "type": "MODEL"
           },
           {
-            "id": 370,
-            "origin_id": 54,
-            "origin_slot": 0,
-            "target_id": 197,
-            "target_slot": 0,
-            "type": "MODEL"
-          },
-          {
             "id": 475,
             "origin_id": 72,
             "origin_slot": 0,
@@ -4785,7 +5015,7 @@
             "origin_id": 113,
             "origin_slot": 0,
             "target_id": 67,
-            "target_slot": 11,
+            "target_slot": 12,
             "type": "INT"
           },
           {
@@ -4793,7 +5023,7 @@
             "origin_id": 114,
             "origin_slot": 0,
             "target_id": 67,
-            "target_slot": 12,
+            "target_slot": 13,
             "type": "FLOAT"
           },
           {
@@ -4801,7 +5031,7 @@
             "origin_id": 116,
             "origin_slot": 0,
             "target_id": 67,
-            "target_slot": 13,
+            "target_slot": 14,
             "type": "FLOAT"
           },
           {
@@ -4843,14 +5073,6 @@
             "target_id": 251,
             "target_slot": 0,
             "type": "SEGS"
-          },
-          {
-            "id": 371,
-            "origin_id": 197,
-            "origin_slot": 0,
-            "target_id": 72,
-            "target_slot": 0,
-            "type": "MODEL"
           },
           {
             "id": 367,
@@ -5267,6 +5489,70 @@
             "target_id": 292,
             "target_slot": 0,
             "type": "IMAGE"
+          },
+          {
+            "id": 706,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 59,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 707,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 67,
+            "target_slot": 11,
+            "type": "INT"
+          },
+          {
+            "id": 708,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 33,
+            "target_slot": 3,
+            "type": "INT"
+          },
+          {
+            "id": 709,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 265,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 710,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 256,
+            "target_slot": 9,
+            "type": "INT"
+          },
+          {
+            "id": 711,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 325,
+            "target_slot": 9,
+            "type": "INT"
+          },
+          {
+            "id": 712,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 314,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 713,
+            "origin_id": 54,
+            "origin_slot": 0,
+            "target_id": 72,
+            "target_slot": 0,
+            "type": "MODEL"
           }
         ],
         "extra": {
@@ -5281,12 +5567,12 @@
   "extra": {
     "ue_links": [],
     "links_added_by_ue": [],
-    "frontendVersion": "1.45.21",
+    "frontendVersion": "1.48.7",
     "ds": {
-      "scale": 0.6934334949441332,
+      "scale": 0.43056764313424634,
       "offset": [
-        -231.66179742190363,
-        1782.8209075001498
+        -584.9660021059464,
+        2251.6563042517514
       ]
     },
     "VHS_latentpreview": true,

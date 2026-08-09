@@ -33,6 +33,14 @@ HF_TOKEN="${HF_TOKEN}"
 HF_TOKEN_loras="${HF_TOKEN_loras}"
 COMFYUI_DIR="/workspace/ComfyUI"
 
+ 
+# Fuerza los directorios temporales de descarga al volumen de 250GB (/workspace)
+# en vez del disco del contenedor (15GB), que se llena con archivos grandes
+# (ej. qwen_3_8b.safetensors ~16GB no cabe ni queda espacio en un disco de 15GB).
+export TMPDIR="/workspace/tmp"
+mkdir -p "$TMPDIR"
+ 
+
 
 echo "================================================"
 echo "  ComfyUI Model Setup — ALL IN ONE Edition"
@@ -65,26 +73,94 @@ mkdir -p ${COMFYUI_DIR}/models/loras \
 # ── Funciones de descarga ─────────────────────────────────────────────────────
 
 download_if_missing() {
-    local url="$1" dest="$2" auth="$3"
+    local url="$1" dest="$2" auth="$3" conns="${4:-16}"
     
     # Si el archivo ya existe y tiene contenido, salta la descarga
-    if [ -f "$dest" ] && [ -s "$dest" ]; then return 0; fi
+    if [ -f "$dest" ] && [ -s "$dest" ]; then 
+        echo "✅ Ya existe: $(basename "$dest")"
+        return 0
+    fi
     
-    echo "  Descargando: $(basename $dest)"
-    
-    # aria2c maneja mejor los nombres de archivo si separamos la ruta del nombre
     local dest_dir=$(dirname "$dest")
     local file_name=$(basename "$dest")
     
-    # Crea el directorio si no existe (por seguridad)
     mkdir -p "$dest_dir"
     
+    # ── Ruta rápida: HuggingFace usa `hf download` (Xet) — hasta ~4x más rápido
+    # y sin los "Download aborted" que da aria2c en repos con muchas conexiones.
+    if [[ "$url" == *"huggingface.co"* ]]; then
+        echo "⬇️ Descargando (HF/Xet): $file_name"
+
+        local repo_type=""
+        local path_part="${url#*huggingface.co/}"
+        path_part="${path_part%%\?*}"   # quita query string si la hay
+
+        if [[ "$path_part" == datasets/* ]]; then
+            repo_type="dataset"
+            path_part="${path_part#datasets/}"
+        fi
+
+        # path_part: owner/repo/resolve/REVISION/ruta/dentro/del/repo/archivo.ext
+        local repo=$(echo "$path_part" | cut -d/ -f1-2)
+        local file_in_repo=$(echo "$path_part" | cut -d/ -f5-)   # se salta owner/repo/resolve/REVISION
+
+        local tmp_dir=$(mktemp -d)
+        local hf_opts=(download "$repo" "$file_in_repo" --local-dir "$tmp_dir")
+        [ -n "$repo_type" ] && hf_opts+=(--repo-type "$repo_type")
+        [ -n "$auth" ] && hf_opts+=(--token "$auth")
+
+        HF_XET_HIGH_PERFORMANCE=1 hf "${hf_opts[@]}"
+        local status=$?
+
+        if [ $status -eq 0 ] && [ -f "$tmp_dir/$file_in_repo" ]; then
+            mv "$tmp_dir/$file_in_repo" "$dest"
+            rm -rf "$tmp_dir"
+            echo "✅ Descarga completada: $file_name"
+            return 0
+        else
+            rm -rf "$tmp_dir"
+            echo "⚠️  hf download falló, reintentando con aria2c: $file_name"
+            # cae al bloque de aria2c de abajo
+        fi
+    fi
+
+    echo "⬇️ Descargando (aria2c): $file_name (conexiones: $conns)"
+
+    # Opciones comunes para optimizar la velocidad y estabilidad en aria2c
+    # $conns controla -x/-s: bájalo (ej. 4) para hosts que limitan conexiones
+    # concurrentes por archivo (verás "Download aborted" repetido si es el caso)
+    local aria2_opts=(
+            "-x" "$conns"              # Máximo de conexiones por servidor permitidas
+            "-s" "$conns"              # Máximo de particiones
+            "-k" "50M"                 # Ideal para archivos masivos, divide en trozos más grandes
+            "--disk-cache=256M"        # USA TU RAM: Mantiene las descargas en memoria antes de escribirlas al disco (crucial para 1 Gbps)
+            "--file-allocation=falloc" # Reserva los 20GB instantáneamente en el disco en lugar de hacerlo poco a poco
+            "-c"                       # Continuar descargas interrumpidas
+            "--max-tries=8"            
+            "--retry-wait=5"           
+            "--timeout=60"             
+            "--console-log-level=warn" 
+            "--summary-interval=5"     
+            "-d" "$dest_dir" 
+            "-o" "$file_name"
+    )
+    
+    # Ejecuta aria2c usando array para evitar problemas de comillas/espacios
     if [ -n "$auth" ]; then
-        aria2c --header="Authorization: Bearer $auth" -x 4 -s 4 -c -d "$dest_dir" -o "$file_name" "$url"
+        aria2c --header="Authorization: Bearer $auth" "${aria2_opts[@]}" "$url"
     else
-        aria2c -x 4 -s 4 -c -d "$dest_dir" -o "$file_name" "$url"
+        aria2c "${aria2_opts[@]}" "$url"
+    fi
+
+    # Manejo de errores: verifica que aria2c terminó exitosamente (código 0)
+    if [ $? -eq 0 ]; then
+        echo "✅ Descarga completada: $file_name"
+    else
+        echo "❌ Error al descargar: $file_name"
+        return 1
     fi
 }
+
 
 download_gdown_if_missing() {
     local id="$1" dest="$2" type="$3"
@@ -121,22 +197,59 @@ download_hf_repo() {
 download_hf_repo_aria2c() {
     local repo="$1" dest_dir="$2" auth="$3"
 
-    echo "  Listando archivos de: $repo"
-    local files
-    files=$(curl -s -H "Authorization: Bearer $auth" \
-        "https://huggingface.co/api/models/$repo" | jq -r '.siblings[].rfilename')
+    # 1. Autoinstalación de 'jq' si no existe
+    if ! command -v jq &> /dev/null; then
+        echo "⚙️ 'jq' no encontrado. Instalando automáticamente..."
+        
+        # Evita que apt pida confirmaciones o menús interactivos que congelen el script
+        export DEBIAN_FRONTEND=noninteractive 
+        
+        # Actualiza las listas e instala jq de forma silenciosa
+        apt-get update -qq && apt-get install -y jq > /dev/null 2>&1
+        
+        # Verifica si la instalación fue exitosa
+        if ! command -v jq &> /dev/null; then
+            echo "❌ No se pudo instalar 'jq' automáticamente. Abortando."
+            return 1
+        fi
+        echo "✅ 'jq' instalado correctamente."
+    fi
 
-    if [ -z "$files" ]; then
-        echo "  No se encontraron archivos (revisa el nombre del repo o el token)"
+    echo "🔍 Listando archivos del repositorio: $repo"
+    
+    # 2. Manejo dinámico del token de seguridad
+    local curl_cmd=(curl -s -f)
+    if [ -n "$auth" ]; then
+        curl_cmd+=(-H "Authorization: Bearer $auth")
+    fi
+
+    # 3. Consulta a la API
+    local files
+    files=$("${curl_cmd[@]}" "https://huggingface.co/api/models/$repo" | jq -r '.siblings[].rfilename 2>/dev/null')
+
+    # 4. Validación estricta de errores
+    if [ $? -ne 0 ] || [ -z "$files" ] || [ "$files" = "null" ]; then
+        echo "❌ No se encontraron archivos o acceso denegado (Revisa el nombre del repo y tu token HF)."
         return 1
     fi
 
+    echo "📦 Archivos encontrados. Iniciando descarga por lotes..."
+
+    # 5. Bucle de descarga
     while IFS= read -r file; do
+        [ -z "$file" ] && continue
+        
         local url="https://huggingface.co/$repo/resolve/main/$file"
         local dest="$dest_dir/$file"
+        
         download_if_missing "$url" "$dest" "$auth"
+        
     done <<< "$files"
+    
+    echo "✅ Repositorio procesado completamente: $repo"
 }
+
+
 
 echo "Instalando huggingface_hub..."
 pip install -U huggingface_hub
@@ -150,10 +263,11 @@ python3 -c "from huggingface_hub import login; login(token='$HF_TOKEN')"
 
 echo "[ ------- Downloading Diffusion Models -------]"
 cd ${COMFYUI_DIR}/models/diffusion_models && rm -rf split_files/
-download_if_missing "https://civitai.red/api/download/models/2953474?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DasiwaWAN22I2V14BLightspeed_snatchkissHighV11.safetensors" 
-download_if_missing "https://civitai.red/api/download/models/2953485?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DasiwaWAN22I2V14BLightspeed_snatchkissLowV11.safetensors" 
+download_if_missing "https://huggingface.co/exjadev/diffusion_models/resolve/main/DasiwaWAN22I2V14BLightspeed_snatchkissHighV11.safetensors" \
+    "DasiwaWAN22I2V14BLightspeed_snatchkissHighV11.safetensors" "$HF_TOKEN"
+
+download_if_missing "https://huggingface.co/exjadev/diffusion_models/resolve/main/DasiwaWAN22I2V14BLightspeed_snatchkissLowV11.safetensors" \
+    "DasiwaWAN22I2V14BLightspeed_snatchkissLowV11.safetensors" "$HF_TOKEN"
 
 
 
@@ -167,10 +281,10 @@ download_if_missing "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged
 # ------------------------------ LORAS ---
 echo "[ LoRAs ]"
 cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
-download_if_missing "https://civitai.red/api/download/models/2553271?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DR34ML4Y_I2V_14B_LOW_V2.safetensors"
-download_if_missing "https://civitai.red/api/download/models/2553151?type=Model&format=SafeTensor&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "DR34ML4Y_I2V_14B_HIGH_V2.safetensors" 
+download_if_missing "https://huggingface.co/Serenak/chilloutmix/resolve/main/DR34ML4Y_I2V_14B_LOW_V2.safetensors" \
+    "DR34ML4Y_I2V_14B_LOW_V2.safetensors" "$HF_TOKEN"
+download_if_missing "https://huggingface.co/Serenak/chilloutmix/resolve/main/DR34ML4Y_I2V_14B_HIGH_V2.safetensors" \
+    "DR34ML4Y_I2V_14B_HIGH_V2.safetensors" "$HF_TOKEN"
 
 echo "[ Character LoRas ]"
 cd ${COMFYUI_DIR}/models/loras && rm -rf split_files/
@@ -244,12 +358,12 @@ download_if_missing "https://huggingface.co/24xx/segm/resolve/main/skin_yolov8n-
 
 
 # ── SECCIÓN DE DESCARGAS MODELOS DE IMAGEN ─────────────────────────
-(
 # --- DIFFUSION MODELS ---
 echo "[ ------- Downloading Diffusion Models -------]"
 cd ${COMFYUI_DIR}/models/diffusion_models && rm -rf split_files/
-download_if_missing "https://civitai.red/api/download/models/3145550?fileId=3026008&token=e3a803e3831ec4832fd75d014b2d385e" \
-    "krast_v20.safetensors" 
+
+download_if_missing "https://huggingface.co/exjadev/diffusion_models/resolve/main/krast_v20.safetensors" \
+    "krast_v20.safetensors" "$HF_TOKEN"
 
 cd ${COMFYUI_DIR}/models/diffusion_models 
 download_if_missing "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors" \
@@ -278,7 +392,10 @@ download_if_missing "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main
     "ae.safetensors" "$HF_TOKEN"
 download_if_missing "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors" \
     "flux2-vae.safetensors" "$HF_TOKEN"
+download_if_missing "https://civitai.red/api/download/models/3068442?fileId=2947164&token=e3a803e3831ec4832fd75d014b2d385e" \
+    "krea2RealVae_v10.safetensors" "$HF_TOKEN"
 
+(
 # ------------------------------ LORAS ---
 echo "[ LoRAs ]"
 cd ${COMFYUI_DIR}/models/loras && rm -rf recipes/
@@ -340,10 +457,6 @@ cd ${COMFYUI_DIR}/models/upscale_models/
 megadl 'https://mega.nz/folder/Xc4wnC7T#yUS5-9-AbRxLhpdPW_8f2w'
 
 
-
-
-
-
 # --- LUTS ---
 # ── Luts  ──────────────────────────────────────────────────────────
 echo "[ VAE ]"
@@ -352,13 +465,6 @@ echo ""
 echo "[ ----------Downloading LUTs --------------]"
 download_gdown_if_missing "1GJEhRrycKwMINkgicw_GjQbjuwdqRJ9P" "LUTs" "folder"
 
-
-
-    # ── SEEDVR2 (Upscale Models) ──────────────────────────────────────────
-echo "[ Starting download SEEDV2 ]"
-cd ${COMFYUI_DIR}/models/SEEDVR2
-download_if_missing "https://huggingface.co/numz/SeedVR2_comfyUI/resolve/main/seedvr2_ema_7b_sharp_fp16.safetensors" \
-    "seedvr2_ema_7b_sharp_fp16.safetensors" "$HF_TOKEN"
 
 
 ) &
@@ -384,4 +490,4 @@ echo "================================================"
 
 chmod -R 777 /workspace/ComfyUI
 
-exec python /workspace/ComfyUI/main.py --listen 0.0.0.0 --port 8188 --enable-manager --highvram --fast
+exec python /workspace/ComfyUI/main.py --listen 0.0.0.0 --port 8188 --enable-manager  
