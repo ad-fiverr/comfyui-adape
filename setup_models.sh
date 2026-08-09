@@ -305,6 +305,19 @@ download_if_missing "https://huggingface.co/exjadev/ZIMAGE-ad_ape-v01/resolve/ma
     "character/ZIMAGE-ad_ape-v01/ad_ape_v01/ad_ape_v01_000002250.safetensors" "$HF_TOKEN"
 
 
+download_if_missing "https://huggingface.co/exjadev/klein_yumi_lora_v01/resolve/main/klein_yumi_lora_v1/klein_yumi_lora_v1.safetensors" \
+    "character/KLEIN-ad_ape_v01/klein_yumi_lora_v1/klein_yumi_lora_v1.safetensors" "$HF_TOKEN"
+
+download_if_missing "https://huggingface.co/exjadev/krea_yumi_lora_v01/resolve/main/krea_yumi_lora_v1/krea_yumi_lora_v1_000002250.safetensors" \
+    "character/KREA-ad_ape_v01/krea_yumi_lora_v1/krea_yumi_lora_v1_000002250.safetensors" "$HF_TOKEN"
+
+
+download_if_missing "https://huggingface.co/exjadev/zimage_yumi_lora_v01/resolve/main/yumi_lora_v01/yumi_lora_v01_000002250.safetensors" \
+    "character/ZIMAGE-ad_ape-v01/yumi_lora_v01/yumi_lora_v01_000002250.safetensors" "$HF_TOKEN"
+
+
+
+
 
 echo "[ VAE ]"
 cd ${COMFYUI_DIR}/models/vae && rm -rf split_files/
